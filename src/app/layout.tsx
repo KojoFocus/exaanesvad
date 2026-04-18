@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
 import { CartProvider } from '@/contexts/CartContext';
+import { SiteModeProvider } from '@/contexts/SiteModeContext';
 
 export const metadata: Metadata = {
   title: {
@@ -15,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body suppressHydrationWarning>
-        <CartProvider>{children}</CartProvider>
+        <SiteModeProvider><CartProvider>{children}</CartProvider></SiteModeProvider>
       </body>
     </html>
   );

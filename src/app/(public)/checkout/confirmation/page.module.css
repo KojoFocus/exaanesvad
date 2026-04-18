@@ -22,14 +22,14 @@
   font-family: var(--serif);
   font-size: clamp(26px, 3vw, 36px);
   font-weight: 400;
-  color: #111;
+  color: var(--ink);
   letter-spacing: -0.5px;
   margin-bottom: 12px;
 }
 
 .sub {
   font-size: 14px;
-  color: #777;
+  color: var(--ink-3);
   line-height: 1.75;
   margin-bottom: 36px;
   max-width: 400px;
@@ -38,8 +38,8 @@
 }
 
 .card {
-  background: #fff;
-  border: 1px solid #E8E8E8;
+  background: var(--surface);
+  border: 1px solid var(--border);
   text-align: left;
   margin-bottom: 28px;
 }
@@ -49,8 +49,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 16px 20px;
-  border-bottom: 1px solid #E8E8E8;
-  background: #FAFAFA;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
 }
 .cardLabel {
   font-family: var(--sans);
@@ -58,42 +58,40 @@
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #aaa;
+  color: var(--ink-4);
 }
 .cardId {
   font-family: var(--sans);
   font-size: 12px;
   font-weight: 700;
-  color: #333;
+  color: var(--ink-2);
   letter-spacing: 1px;
 }
 
-.items {
-  padding: 0 20px;
-}
+.items { padding: 0 20px; }
 
 .item {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 12px 0;
-  border-bottom: 1px solid #F5F5F5;
+  border-bottom: 1px solid var(--border);
   font-family: var(--sans);
   font-size: 13px;
 }
 .item:last-child { border-bottom: none; }
 
-.itemName { flex: 1; color: #111; }
-.itemQty  { color: #bbb; font-size: 12px; }
-.itemPrice { color: #333; font-family: var(--serif); }
+.itemName { flex: 1; color: var(--ink); }
+.itemQty  { color: var(--ink-4); font-size: 12px; }
+.itemPrice { color: var(--ink-2); font-family: var(--serif); }
 
 .total {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 14px 20px;
-  border-top: 1px solid #E8E8E8;
-  background: #FAFAFA;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
 }
 .total span:first-child {
   font-family: var(--sans);
@@ -101,25 +99,13 @@
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #888;
+  color: var(--ink-4);
 }
-.totalAmt {
-  font-family: var(--serif);
-  font-size: 20px;
-  color: #111;
-  letter-spacing: -0.3px;
-}
+.totalAmt { font-family: var(--serif); font-size: 20px; color: var(--ink); letter-spacing: -0.3px; }
 
-.contact {
-  padding: 14px 20px;
-  border-top: 1px solid #E8E8E8;
-}
-.contact p {
-  font-family: var(--sans);
-  font-size: 12.5px;
-  color: #888;
-}
-.contact strong { color: #333; font-weight: 600; }
+.contact { padding: 14px 20px; border-top: 1px solid var(--border); }
+.contact p { font-family: var(--sans); font-size: 12.5px; color: var(--ink-3); }
+.contact strong { color: var(--ink-2); font-weight: 600; }
 
 .impactNote {
   display: flex;
@@ -127,22 +113,17 @@
   gap: 8px;
   font-family: var(--sans);
   font-size: 12.5px;
-  color: #888;
+  color: var(--ink-3);
   line-height: 1.65;
   text-align: left;
-  background: #F7FBF7;
+  background: var(--green-pale);
   border: 1px solid rgba(28,74,28,0.1);
   padding: 14px 16px;
   margin-bottom: 28px;
 }
 .impactIcon { color: var(--green); opacity: 0.6; flex-shrink: 0; font-size: 10px; padding-top: 2px; }
 
-.actions {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: center;
-}
+.actions { display: flex; flex-direction: column; gap: 12px; align-items: center; }
 
 .shopBtn {
   font-family: var(--sans);
@@ -161,11 +142,11 @@
 .homeLink {
   font-family: var(--sans);
   font-size: 12px;
-  color: #888;
+  color: var(--ink-3);
   text-decoration: none;
   font-weight: 500;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--border-mid);
   padding-bottom: 2px;
   transition: color 0.15s, border-color 0.15s;
 }
-.homeLink:hover { color: #111; border-color: #111; }
+.homeLink:hover { color: var(--ink); border-color: var(--ink-2); }

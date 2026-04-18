@@ -14,20 +14,20 @@
   font-weight: 500;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: #bbb;
+  color: var(--ink-4);
   margin-bottom: 16px;
 }
 .emptyTitle {
   font-family: var(--serif);
   font-size: clamp(28px, 4vw, 48px);
   font-weight: 400;
-  color: #111;
+  color: var(--ink);
   letter-spacing: -0.5px;
   margin-bottom: 12px;
 }
 .emptySub {
   font-size: 14px;
-  color: #888;
+  color: var(--ink-3);
   max-width: 360px;
   line-height: 1.7;
   margin-bottom: 32px;
@@ -50,28 +50,27 @@
 .page {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 56px 64px 80px;
+  padding: 56px var(--px) 80px;
 }
 
 .head {
   margin-bottom: 40px;
   padding-bottom: 24px;
-  border-bottom: 1px solid #E8E8E8;
+  border-bottom: 1px solid var(--border);
 }
 
 .title {
   font-family: var(--serif);
   font-size: clamp(22px, 2.5vw, 30px);
   font-weight: 400;
-  color: #111;
+  color: var(--ink);
   letter-spacing: -0.3px;
 }
 .count {
   font-family: var(--sans);
   font-size: 14px;
-  color: #bbb;
+  color: var(--ink-4);
   font-weight: 400;
-  letter-spacing: 0;
 }
 
 .layout {
@@ -88,7 +87,7 @@
   display: flex;
   gap: 24px;
   padding: 24px 0;
-  border-bottom: 1px solid #E8E8E8;
+  border-bottom: 1px solid var(--border);
   align-items: flex-start;
 }
 
@@ -97,15 +96,10 @@
   width: 96px;
   height: 96px;
   flex-shrink: 0;
-  background: #F2F2EE;
+  background: var(--warm-gray);
   overflow: hidden;
 }
-
-.itemImgPlaceholder {
-  width: 100%;
-  height: 100%;
-  background: #EEEEE8;
-}
+.itemImgPlaceholder { width: 100%; height: 100%; background: var(--border); }
 
 .itemInfo { flex: 1; min-width: 0; }
 
@@ -115,21 +109,11 @@
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #bbb;
+  color: var(--ink-4);
   margin-bottom: 5px;
 }
-.itemName {
-  font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 500;
-  color: #111;
-  margin-bottom: 6px;
-}
-.itemPrice {
-  font-family: var(--serif);
-  font-size: 15px;
-  color: #555;
-}
+.itemName { font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+.itemPrice { font-family: var(--serif); font-size: 15px; color: var(--ink-3); }
 
 .itemRight {
   display: flex;
@@ -142,7 +126,7 @@
 .qtyRow {
   display: flex;
   align-items: center;
-  border: 1px solid #E8E8E8;
+  border: 1px solid var(--border);
 }
 .qtyBtn {
   width: 32px;
@@ -150,7 +134,7 @@
   background: transparent;
   border: none;
   font-size: 15px;
-  color: #555;
+  color: var(--ink-3);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -158,7 +142,7 @@
   transition: background 0.15s;
   font-family: var(--sans);
 }
-.qtyBtn:hover { background: #F5F5F5; }
+.qtyBtn:hover { background: var(--bg); }
 
 .qtyNum {
   width: 38px;
@@ -166,31 +150,26 @@
   font-family: var(--sans);
   font-size: 13px;
   font-weight: 500;
-  color: #111;
-  border-left: 1px solid #E8E8E8;
-  border-right: 1px solid #E8E8E8;
+  color: var(--ink);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
   line-height: 32px;
 }
 
-.itemTotal {
-  font-family: var(--serif);
-  font-size: 16px;
-  color: #111;
-  letter-spacing: -0.3px;
-}
+.itemTotal { font-family: var(--serif); font-size: 16px; color: var(--ink); letter-spacing: -0.3px; }
 
 .removeBtn {
   background: none;
   border: none;
   font-family: var(--sans);
   font-size: 11px;
-  color: #bbb;
+  color: var(--ink-4);
   cursor: pointer;
   padding: 0;
   text-decoration: underline;
   transition: color 0.15s;
 }
-.removeBtn:hover { color: #E53E3E; }
+.removeBtn:hover { color: var(--s-r-tx); }
 
 .clearRow {
   display: flex;
@@ -203,30 +182,30 @@
   border: none;
   font-family: var(--sans);
   font-size: 11.5px;
-  color: #bbb;
+  color: var(--ink-4);
   cursor: pointer;
   padding: 0;
   text-decoration: underline;
   transition: color 0.15s;
 }
-.clearBtn:hover { color: #E53E3E; }
+.clearBtn:hover { color: var(--s-r-tx); }
 
 .continueLink {
   font-family: var(--sans);
   font-size: 12px;
-  color: #888;
+  color: var(--ink-3);
   text-decoration: none;
   font-weight: 500;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--border-mid);
   padding-bottom: 2px;
   transition: color 0.15s, border-color 0.15s;
 }
-.continueLink:hover { color: #111; border-color: #111; }
+.continueLink:hover { color: var(--ink); border-color: var(--ink-2); }
 
 /* Summary */
 .summary {
-  background: #FAFAFA;
-  border: 1px solid #E8E8E8;
+  background: var(--bg);
+  border: 1px solid var(--border);
   padding: 28px;
   position: sticky;
   top: 80px;
@@ -238,23 +217,18 @@
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #888;
+  color: var(--ink-4);
   margin-bottom: 20px;
 }
 
-.summaryLines {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 16px;
-}
+.summaryLines { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
 
 .summaryLine {
   display: flex;
   justify-content: space-between;
   font-family: var(--sans);
   font-size: 12.5px;
-  color: #666;
+  color: var(--ink-3);
 }
 .summaryLineLabel {
   flex: 1;
@@ -264,11 +238,7 @@
   white-space: nowrap;
 }
 
-.summaryDivider {
-  height: 1px;
-  background: #E8E8E8;
-  margin: 16px 0;
-}
+.summaryDivider { height: 1px; background: var(--border); margin: 16px 0; }
 
 .summaryTotal {
   display: flex;
@@ -282,21 +252,11 @@
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  color: #888;
+  color: var(--ink-4);
 }
-.summaryTotalAmt {
-  font-family: var(--serif);
-  font-size: 22px;
-  color: #111;
-  letter-spacing: -0.5px;
-}
+.summaryTotalAmt { font-family: var(--serif); font-size: 22px; color: var(--ink); letter-spacing: -0.5px; }
 
-.summaryNote {
-  font-family: var(--sans);
-  font-size: 11px;
-  color: #bbb;
-  margin-bottom: 20px;
-}
+.summaryNote { font-family: var(--sans); font-size: 11px; color: var(--ink-4); margin-bottom: 20px; }
 
 .checkoutBtn {
   display: block;
@@ -321,13 +281,13 @@
   gap: 8px;
   font-family: var(--sans);
   font-size: 11.5px;
-  color: #888;
+  color: var(--ink-3);
   line-height: 1.6;
 }
 .impactIcon { color: var(--green); flex-shrink: 0; opacity: 0.6; font-size: 10px; padding-top: 2px; }
 
 @media (max-width: 900px) {
-  .page { padding: 40px 24px 64px; }
+  .page { padding: 40px var(--px-sm) 64px; }
   .layout { grid-template-columns: 1fr; gap: 32px; }
   .summary { position: static; }
 }

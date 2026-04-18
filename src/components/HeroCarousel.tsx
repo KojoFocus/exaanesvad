@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useSiteMode } from '@/contexts/SiteModeContext';
 import styles from './HeroCarousel.module.css';
 
 const STATS = [
@@ -12,6 +14,14 @@ const STATS = [
 ];
 
 export default function Hero() {
+  const { setMode } = useSiteMode();
+  const router = useRouter();
+
+  const goShop = () => {
+    setMode('shop');
+    router.push('/');
+  };
+
   return (
     <section className={styles.hero}>
       {/* ── Left: text ── */}
@@ -28,7 +38,7 @@ export default function Hero() {
             Your purchase funds the next cohort.
           </p>
           <div className={styles.ctas}>
-            <Link href="/shop" className={styles.ctaPrimary}>Shop &amp; support</Link>
+            <button onClick={goShop} className={styles.ctaPrimary}>Shop &amp; support</button>
             <Link href="/about" className={styles.ctaGhost}>About the programme →</Link>
           </div>
         </div>

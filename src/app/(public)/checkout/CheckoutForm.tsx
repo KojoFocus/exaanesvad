@@ -38,15 +38,9 @@ export default function CheckoutForm() {
 
       <div className={styles.section}>
         <h2 className={styles.secTitle}>Contact information</h2>
-        <div className={styles.row2}>
-          <div className={styles.fg}>
-            <label className={styles.label}>Full name <span className={styles.req}>*</span></label>
-            <input name="customerName" required className={styles.input} placeholder="Kwame Mensah" />
-          </div>
-          <div className={styles.fg}>
-            <label className={styles.label}>Email address <span className={styles.req}>*</span></label>
-            <input name="customerEmail" type="email" required className={styles.input} placeholder="you@example.com" />
-          </div>
+        <div className={styles.fg}>
+          <label className={styles.label}>Full name <span className={styles.req}>*</span></label>
+          <input name="customerName" required className={styles.input} placeholder="Kwame Mensah" />
         </div>
         <div className={styles.fg}>
           <label className={styles.label}>Phone number <span className={styles.req}>*</span></label>

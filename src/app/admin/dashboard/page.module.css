@@ -152,3 +152,24 @@
   font-family: var(--sans);
   font-size: 13px;
 }
+
+@media (max-width: 768px) {
+  .metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .quickRow {
+    flex-wrap: wrap;
+  }
+  .tableCard {
+    overflow-x: auto;
+  }
+  .table {
+    min-width: 520px;
+  }
+}
+
+@media (max-width: 480px) {
+  .metrics {
+    grid-template-columns: 1fr;
+  }
+}

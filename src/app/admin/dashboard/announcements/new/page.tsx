@@ -15,8 +15,7 @@ export default function NewAnnouncementPage() {
         <div className={styles.section}>
           <h2 className={styles.secTitle}>Content</h2>
           <div className={styles.fg}><label className={styles.label}>Title <span className={styles.req}>*</span></label><input name="title" required className={styles.input} placeholder="Announcement title" /></div>
-          <div className={styles.fg}><label className={styles.label}>Summary <span className={styles.req}>*</span></label><input name="summary" required className={styles.input} placeholder="One-sentence summary" /></div>
-          <div className={styles.fg}><label className={styles.label}>Full content</label><textarea name="content" className={styles.textarea} placeholder="Full announcement text…" /></div>
+          <div className={styles.fg}><label className={styles.label}>Body</label><textarea name="content" className={styles.textarea} placeholder="Additional details (optional)…" /></div>
         </div>
         <div className={styles.section}>
           <h2 className={styles.secTitle}>Options</h2>

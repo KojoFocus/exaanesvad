@@ -10,35 +10,31 @@ type ShopPageProps = { searchParams: Promise<{ category?: string }> };
 
 export default async function ShopPage({ searchParams }: ShopPageProps) {
   const { category } = await searchParams;
-  const [products, categories] = await Promise.all([
+  const [allProducts, categories] = await Promise.all([
     prisma.product.findMany({
-      where: {
-        published: true,
-        ...(category ? { category: { slug: category } } : {}),
-      },
+      where: { published: true, ...(category ? { category: { slug: category } } : {}) },
       include: { category: true },
       orderBy: { createdAt: 'desc' },
     }),
     prisma.category.findMany({ orderBy: { name: 'asc' } }),
   ]);
 
+  const products = allProducts
+    .filter(p => Array.isArray(p.images) && (p.images as string[]).some(img => typeof img === 'string' && img.trim() !== ''));
+
   return (
     <>
       <div className={styles.pageHead}>
-        <p className={styles.eyebrow}>Support community artisans</p>
-        <h1 className={styles.h1}>The Shop</h1>
-        <p className={styles.sub}>Every purchase empowers a livelihood and funds the next training cohort.</p>
+        <span className={styles.eyebrow}>Our products</span>
+        <Link href="/shop" className={styles.viewAllHead}>View all →</Link>
       </div>
 
       <div className={styles.layout}>
         <aside className={styles.sidebar}>
           <div className={styles.sideSection}>
             <div className={styles.sideLabel}>Category</div>
-            <Link
-              href="/shop"
-              className={`${styles.filterItem} ${!category ? styles.filterActive : ''}`}
-            >
-              All products
+            <Link href="/shop" className={`${styles.filterItem} ${!category ? styles.filterActive : ''}`}>
+              All
             </Link>
             {categories.map(c => (
               <Link
@@ -50,7 +46,6 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
               </Link>
             ))}
           </div>
-
           <div className={styles.impactNote}>
             <p className={styles.impactNoteText}>
               <strong>100% of proceeds</strong> support vocational training and community livelihoods in Ghana.
@@ -75,19 +70,18 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
                 return (
                   <Link key={p.id} href={`/shop/${p.slug}`} className={styles.card}>
                     <div className={styles.cardImgWrap}>
-                      {imgs[0] ? (
-                        <Image src={imgs[0]} alt={p.name} fill style={{ objectFit: 'cover' }} />
-                      ) : (
-                        <div className={styles.cardImgPlaceholder} />
-                      )}
+                      {imgs[0]
+                        ? <Image src={imgs[0]} alt={p.name} fill style={{ objectFit: 'cover' }} />
+                        : <div className={styles.cardImgPlaceholder} />}
                     </div>
                     <div className={styles.cardBody}>
-                      <p className={styles.cardCat}>{p.category.name}</p>
-                      <p className={styles.cardName}>{p.name}</p>
-                      <div className={styles.cardFooter}>
+                      <div className={styles.cardRow}>
+                        <p className={styles.cardName}>{p.name}</p>
                         <span className={styles.cardPrice}>GHS {p.price.toLocaleString()}</span>
-                        <span className={styles.cardTag}>Artisan made ✦</span>
                       </div>
+                      <p className={styles.cardCat}>{p.category.name}</p>
+                      {p.description && <p className={styles.cardDesc}>{p.description}</p>}
+                      <span className={styles.cardLink}>View product →</span>
                     </div>
                   </Link>
                 );

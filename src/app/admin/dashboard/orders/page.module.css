@@ -13,3 +13,11 @@
 .statusSelect { font-family: var(--sans); font-size: 12px; padding: 4px 8px; border: 1px solid var(--bdr); border-radius: var(--r); background: var(--bg); outline: none; cursor: pointer; }
 .dateCell { color: var(--ink3); }
 .empty  { text-align: center; color: var(--ink3); padding: 32px; }
+.deleteBtn { background: none; border: none; color: #ccc; cursor: pointer; font-size: 12px; padding: 4px 6px; transition: color 0.15s; }
+.deleteBtn:hover { color: #e44; }
+
+@media (max-width: 768px) {
+  .header { flex-direction: column; gap: 12px; align-items: flex-start; }
+  .tableCard { overflow-x: auto; }
+  .table { min-width: 600px; }
+}

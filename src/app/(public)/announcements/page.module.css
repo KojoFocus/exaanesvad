@@ -1,8 +1,8 @@
 /* ── Page Header ── */
 .pageHead {
-  background: #fff;
-  border-bottom: 1px solid #E8E8E8;
-  padding: 80px 64px 56px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 80px var(--px) 56px;
 }
 .eyebrow {
   font-family: var(--sans);
@@ -10,7 +10,7 @@
   font-weight: 500;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: #999;
+  color: var(--ink-4);
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -28,24 +28,15 @@
   font-family: var(--serif);
   font-size: clamp(28px, 3.5vw, 44px);
   font-weight: 400;
-  color: #111;
+  color: var(--ink);
   letter-spacing: -1px;
   line-height: 1.1;
   margin-bottom: 16px;
 }
-.sub {
-  font-size: 15px;
-  color: #777;
-  line-height: 1.7;
-  max-width: 480px;
-}
+.sub { font-size: 15px; color: var(--ink-3); line-height: 1.7; max-width: 480px; }
 
 /* ── List layout ── */
-.inner {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 64px 80px;
-}
+.inner { max-width: 800px; margin: 0 auto; padding: 0 var(--px) 80px; }
 
 /* ── Year group ── */
 .yearGroup { margin-top: 56px; }
@@ -53,7 +44,7 @@
   font-family: var(--serif);
   font-size: clamp(48px, 5vw, 72px);
   font-weight: 400;
-  color: #F0F0EC;
+  color: var(--border);
   letter-spacing: -3px;
   line-height: 1;
   margin-bottom: -8px;
@@ -67,22 +58,18 @@
   gap: 32px;
   text-decoration: none;
   padding: 28px 0;
-  border-bottom: 1px solid #E8E8E8;
+  border-bottom: 1px solid var(--border);
   transition: background 0.15s;
 }
-.card:first-of-type { border-top: 1px solid #E8E8E8; }
+.card:first-of-type { border-top: 1px solid var(--border); }
 .card:hover .cardTitle { color: var(--green); }
 
-.cardDate {
-  flex-shrink: 0;
-  width: 72px;
-  text-align: right;
-}
+.cardDate { flex-shrink: 0; width: 72px; text-align: right; }
 .cardDateDay {
   font-family: var(--serif);
   font-size: 28px;
   font-weight: 400;
-  color: #111;
+  color: var(--ink);
   letter-spacing: -1px;
   line-height: 1;
   display: block;
@@ -93,7 +80,7 @@
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #bbb;
+  color: var(--ink-4);
   display: block;
   margin-top: 4px;
 }
@@ -101,18 +88,13 @@
 .cardDivider {
   flex-shrink: 0;
   width: 1px;
-  background: #E8E8E8;
+  background: var(--border);
   align-self: stretch;
   margin: 4px 0;
 }
 
 .cardBody { flex: 1; min-width: 0; }
-.cardMeta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-}
+.cardMeta { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
 .cardCat {
   font-family: var(--sans);
   font-size: 9px;
@@ -127,22 +109,22 @@
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #92400E;
-  background: #FEF3C7;
+  color: var(--s-w-tx);
+  background: var(--s-w-bg);
   padding: 2px 7px;
 }
 .cardTitle {
   font-family: var(--sans);
   font-size: 15px;
   font-weight: 500;
-  color: #111;
+  color: var(--ink);
   line-height: 1.4;
   margin-bottom: 8px;
   transition: color 0.15s;
 }
 .cardSummary {
   font-size: 13px;
-  color: #888;
+  color: var(--ink-3);
   line-height: 1.7;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -151,13 +133,7 @@
 }
 
 /* ── Empty ── */
-.empty {
-  padding: 80px 0;
-  text-align: center;
-  color: #bbb;
-  font-size: 13px;
-  font-family: var(--sans);
-}
+.empty { padding: 80px 0; text-align: center; color: var(--ink-4); font-size: 13px; font-family: var(--sans); }
 
 @media (max-width: 900px) {
   .pageHead { padding: 56px var(--px-sm) 40px; }

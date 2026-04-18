@@ -2,24 +2,39 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useCart } from '@/contexts/CartContext';
+import { useSiteMode } from '@/contexts/SiteModeContext';
 import styles from './Navbar.module.css';
 
-const LINKS = [
+const SHOP_LINKS = [
+  { href: '/shop',    label: 'Shop'    },
+  { href: '/about',   label: 'About'   },
+  { href: '/contact', label: 'Contact' },
+];
+
+const IMPACT_LINKS = [
   { href: '/shop',          label: 'Shop'       },
-  { href: '/about',         label: 'About'      },
   { href: '/activities',    label: 'Activities' },
-  { href: '/gallery',       label: 'Gallery'    },
-  { href: '/videos',        label: 'Videos'     },
   { href: '/announcements', label: 'Updates'    },
+  { href: '/gallery',       label: 'Gallery'    },
+  { href: '/about',         label: 'About'      },
   { href: '/contact',       label: 'Contact'    },
 ];
 
 export default function Navbar() {
   const path = usePathname();
+  const router = useRouter();
   const { count } = useCart();
+  const { mode, setMode } = useSiteMode();
   const [logoLoaded, setLogoLoaded] = useState(true);
+
+  const switchTo = (m: 'shop' | 'impact') => {
+    setMode(m);
+    router.push('/');
+  };
+
+  const links = mode === 'shop' ? SHOP_LINKS : IMPACT_LINKS;
 
   return (
     <header className={styles.header}>
@@ -29,7 +44,7 @@ export default function Navbar() {
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src="/hero/logo.png"
-              alt="Divine EXA Ventures × Anesvad Foundation"
+              alt="EXA Ventures × Anesvad"
               className={styles.logoImg}
               onError={() => setLogoLoaded(false)}
             />
@@ -42,7 +57,7 @@ export default function Navbar() {
         </Link>
 
         <ul className={styles.links}>
-          {LINKS.map(({ href, label }) => (
+          {links.map(({ href, label }) => (
             <li key={href}>
               <Link
                 href={href}
@@ -55,11 +70,24 @@ export default function Navbar() {
         </ul>
 
         <div className={styles.right}>
+          <div className={styles.modeToggle} role="group" aria-label="Switch view">
+            <button
+              onClick={() => switchTo('shop')}
+              className={`${styles.modeBtn} ${mode === 'shop' ? styles.modeBtnActive : ''}`}
+            >
+              Shop
+            </button>
+            <button
+              onClick={() => switchTo('impact')}
+              className={`${styles.modeBtn} ${mode === 'impact' ? styles.modeBtnActive : ''}`}
+            >
+              Impact
+            </button>
+          </div>
           <Link href="/cart" className={styles.cartBtn}>
             Cart
             {count > 0 && <span className={styles.cartBadge}>{count}</span>}
           </Link>
-          <Link href="/admin/dashboard" className={styles.dashBtn}>Dashboard</Link>
         </div>
       </nav>
     </header>

@@ -25,8 +25,7 @@ export default async function EditAnnouncementPage({ params }: EditAnnouncementP
         <div className={styles.section}>
           <h2 className={styles.secTitle}>Content</h2>
           <div className={styles.fg}><label className={styles.label}>Title <span className={styles.req}>*</span></label><input name="title" required defaultValue={a.title} className={styles.input} /></div>
-          <div className={styles.fg}><label className={styles.label}>Summary <span className={styles.req}>*</span></label><input name="summary" required defaultValue={a.summary} className={styles.input} /></div>
-          <div className={styles.fg}><label className={styles.label}>Full content</label><textarea name="content" defaultValue={a.content} className={styles.textarea} /></div>
+          <div className={styles.fg}><label className={styles.label}>Body</label><textarea name="content" defaultValue={a.content ?? ''} className={styles.textarea} /></div>
         </div>
         <div className={styles.section}>
           <h2 className={styles.secTitle}>Options</h2>

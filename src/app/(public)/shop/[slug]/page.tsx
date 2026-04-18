@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: ProductDetailPageProps) {
 
 export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
   const { slug } = await params;
-  const [product, related] = await Promise.all([
+  const [product, allProducts] = await Promise.all([
     prisma.product.findUnique({
       where: { slug, published: true },
       include: { category: true },
@@ -26,7 +26,6 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
     prisma.product.findMany({
       where: { published: true },
       include: { category: true },
-      take: 4,
       orderBy: { createdAt: 'desc' },
     }),
   ]);
@@ -35,32 +34,23 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 
   const images: string[] = Array.isArray(product.images) ? product.images as string[] : [];
   const mainImage = images[0] ?? null;
-  const relatedProducts = related.filter(r => r.id !== product.id).slice(0, 3);
+  const currentIndex = allProducts.findIndex(p => p.id === product.id);
+  const nextProduct = allProducts[currentIndex + 1] ?? null;
+  const relatedProducts = allProducts.filter(p => p.id !== product.id).slice(0, 3);
 
   return (
     <>
-      {/* Breadcrumb */}
       <nav className={styles.breadcrumb}>
-        <Link href="/shop">Shop</Link>
-        <span>/</span>
-        <Link href={`/shop?category=${product.category.slug}`}>{product.category.name}</Link>
+        <Link href="/shop">Our products</Link>
         <span>/</span>
         <span>{product.name}</span>
       </nav>
 
-      {/* Main product layout */}
       <div className={styles.product}>
-        {/* Image column */}
         <div className={styles.imageCol}>
           <div className={styles.mainImgWrap}>
             {mainImage ? (
-              <Image
-                src={mainImage}
-                alt={product.name}
-                fill
-                style={{ objectFit: 'cover' }}
-                priority
-              />
+              <Image src={mainImage} alt={product.name} fill style={{ objectFit: 'cover' }} priority />
             ) : (
               <div className={styles.imgPlaceholder}>
                 <span className={styles.imgPlaceholderLabel}>{product.category.name}</span>
@@ -78,13 +68,10 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
           )}
         </div>
 
-        {/* Info column */}
         <div className={styles.infoCol}>
           <p className={styles.category}>{product.category.name}</p>
           <h1 className={styles.name}>{product.name}</h1>
           <p className={styles.price}>GHS {product.price.toLocaleString()}</p>
-
-          <div className={styles.rule} />
 
           <p className={styles.shortDesc}>{product.shortDescription}</p>
 
@@ -102,22 +89,21 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 
           <div className={styles.rule} />
 
-          {/* Description */}
-          <div className={styles.descSection}>
-            <p className={styles.descLabel}>About this product</p>
-            <p className={styles.desc}>{product.description}</p>
-          </div>
+          {product.description && (
+            <div className={styles.descSection}>
+              <p className={styles.descLabel}>About this product</p>
+              <p className={styles.desc}>{product.description}</p>
+            </div>
+          )}
 
-          {/* Impact note */}
           <div className={styles.impactNote}>
             <div className={styles.impactIcon}>✦</div>
             <p className={styles.impactText}>
-              This product was made through the EXA-ANESVAD livelihood training programme.
-              Every purchase directly supports a trained artisan and funds the next cohort of trainees.
+              Made through the EXA Ventures &amp; Anesvad livelihood training programme.
+              Every purchase directly supports a trained artisan and funds the next cohort.
             </p>
           </div>
 
-          {/* Meta */}
           <div className={styles.metaList}>
             <div className={styles.metaItem}>
               <span className={styles.metaKey}>Category</span>
@@ -125,9 +111,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
             </div>
             <div className={styles.metaItem}>
               <span className={styles.metaKey}>Stock</span>
-              <span className={styles.metaVal}>
-                {product.stock > 0 ? `${product.stock} available` : 'Out of stock'}
-              </span>
+              <span className={styles.metaVal}>{product.stock > 0 ? `${product.stock} available` : 'Out of stock'}</span>
             </div>
             <div className={styles.metaItem}>
               <span className={styles.metaKey}>Origin</span>
@@ -137,7 +121,14 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
         </div>
       </div>
 
-      {/* Related products */}
+      {nextProduct && (
+        <div className={styles.nextNav}>
+          <Link href={`/shop/${nextProduct.slug}`} className={styles.nextLink}>
+            {nextProduct.name} →
+          </Link>
+        </div>
+      )}
+
       {relatedProducts.length > 0 && (
         <section className={styles.related}>
           <div className={styles.relatedHeader}>
@@ -150,15 +141,15 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               return (
                 <Link key={p.id} href={`/shop/${p.slug}`} className={styles.relCard}>
                   <div className={styles.relImgWrap}>
-                    {imgs[0] ? (
-                      <Image src={imgs[0]} alt={p.name} fill style={{ objectFit: 'cover' }} />
-                    ) : (
-                      <div className={styles.relImgPlaceholder} />
-                    )}
+                    {imgs[0]
+                      ? <Image src={imgs[0]} alt={p.name} fill style={{ objectFit: 'cover' }} />
+                      : <div className={styles.relImgPlaceholder} />}
                   </div>
-                  <p className={styles.relCat}>{p.category.name}</p>
-                  <p className={styles.relName}>{p.name}</p>
-                  <p className={styles.relPrice}>GHS {p.price.toLocaleString()}</p>
+                  <div className={styles.relBody}>
+                    <p className={styles.relCat}>{p.category.name}</p>
+                    <p className={styles.relName}>{p.name}</p>
+                    <p className={styles.relPrice}>GHS {p.price.toLocaleString()}</p>
+                  </div>
                 </Link>
               );
             })}

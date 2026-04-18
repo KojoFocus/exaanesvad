@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/prisma';
-import { updateOrderStatus } from './actions';
+import StatusSelect from './StatusSelect';
+import { deleteOrder } from './actions';
 import styles from './page.module.css';
 
 export const metadata = { title: 'Orders' };
@@ -50,6 +51,7 @@ export default async function OrdersPage() {
               <th>Status</th>
               <th>Update</th>
               <th>Date</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -72,19 +74,15 @@ export default async function OrdersPage() {
                     </span>
                   </td>
                   <td>
-                    <form action={updateOrderStatus.bind(null, order.id)}>
-                      <select name="status" defaultValue={order.status} className={styles.statusSelect}
-                        onChange={(e) => (e.target.form as HTMLFormElement).requestSubmit()}>
-                        <option value="pending">Pending</option>
-                        <option value="confirmed">Confirmed</option>
-                        <option value="processing">Processing</option>
-                        <option value="delivered">Delivered</option>
-                        <option value="cancelled">Cancelled</option>
-                      </select>
-                    </form>
+                    <StatusSelect orderId={order.id} current={order.status} />
                   </td>
                   <td className={styles.dateCell}>
                     {new Date(order.createdAt).toLocaleDateString('en-GH', { month: 'short', day: 'numeric' })}
+                  </td>
+                  <td>
+                    <form action={deleteOrder.bind(null, order.id)}>
+                      <button type="submit" className={styles.deleteBtn} title="Delete order">✕</button>
+                    </form>
                   </td>
                 </tr>
               ))

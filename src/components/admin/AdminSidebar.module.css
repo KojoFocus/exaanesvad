@@ -1,17 +1,52 @@
+/* ── Hamburger (mobile only) ── */
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 300;
+  background: #0A0A0A;
+  border: 1px solid #2a2a2a;
+  color: rgba(255,255,255,0.7);
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 198;
+}
+
+/* ── Sidebar ── */
 .aside {
   background: #0A0A0A;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   border-right: 1px solid #1A1A1A;
+  width: 216px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
 }
 
+/* ── Logo ── */
 .logo {
-  padding: 20px 20px 18px;
+  padding: 16px 14px;
   display: flex;
   align-items: center;
   gap: 10px;
   border-bottom: 1px solid #1A1A1A;
+  min-height: 57px;
+  flex-shrink: 0;
 }
 .logoMark {
   width: 24px;
@@ -21,6 +56,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 2px;
 }
 .logoMarkDot {
   width: 6px;
@@ -35,23 +71,28 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #fff;
+  white-space: nowrap;
 }
 
+/* ── Nav ── */
 .nav {
-  padding: 12px 0;
+  padding: 8px 0;
   flex: 1;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .group {
-  padding: 16px 20px 6px;
+  padding: 14px 20px 5px;
   font-family: var(--sans);
   font-size: 9px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: rgba(255,255,255,0.2);
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .item {
@@ -67,6 +108,7 @@
   text-decoration: none;
   transition: color 0.12s, background 0.12s;
   position: relative;
+  white-space: nowrap;
 }
 
 .item:hover {
@@ -98,9 +140,11 @@
 .active .icon { opacity: 1; }
 .item:hover .icon { opacity: 0.8; }
 
+/* ── Bottom ── */
 .bottom {
-  padding: 12px 0;
+  padding: 8px 0;
   border-top: 1px solid #1A1A1A;
+  flex-shrink: 0;
 }
 
 .signout {
@@ -117,8 +161,30 @@
   border: none;
   transition: color 0.12s, background 0.12s;
   text-align: left;
+  white-space: nowrap;
 }
 .signout:hover {
   color: rgba(255,255,255,0.7);
   background: rgba(255,255,255,0.04);
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .backdrop  { display: block; }
+
+  .aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 216px;
+    z-index: 199;
+    transform: translateX(-100%);
+    transition: transform 0.22s ease;
+  }
+
+  .mobileOpen {
+    transform: translateX(0);
+  }
 }

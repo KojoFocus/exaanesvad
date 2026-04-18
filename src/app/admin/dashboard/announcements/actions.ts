@@ -6,11 +6,11 @@ import slugify from 'slugify';
 
 export async function createAnnouncement(formData: FormData) {
   const title     = formData.get('title') as string;
-  const summary   = formData.get('summary') as string;
   const content   = formData.get('content') as string;
   const featured  = formData.get('featured') === 'on';
   const published = formData.get('published') === 'on';
   const slug      = slugify(title, { lower: true, strict: true });
+  const summary   = title;
 
   await prisma.announcement.create({ data: { title, slug, summary, content, featured, published } });
   revalidatePath('/admin/dashboard/announcements');
@@ -20,11 +20,11 @@ export async function createAnnouncement(formData: FormData) {
 
 export async function updateAnnouncement(id: string, formData: FormData) {
   const title     = formData.get('title') as string;
-  const summary   = formData.get('summary') as string;
   const content   = formData.get('content') as string;
   const featured  = formData.get('featured') === 'on';
   const published = formData.get('published') === 'on';
   const slug      = slugify(title, { lower: true, strict: true });
+  const summary   = title;
 
   await prisma.announcement.update({ where: { id }, data: { title, slug, summary, content, featured, published } });
   revalidatePath('/admin/dashboard/announcements');

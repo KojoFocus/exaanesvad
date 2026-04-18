@@ -5,7 +5,7 @@ import { z } from 'zod';
 
 const OrderSchema = z.object({
   customerName:  z.string().min(2),
-  customerEmail: z.string().email(),
+  customerEmail: z.string().optional().transform(v => v ?? ''),
   customerPhone: z.string().min(7),
   address:       z.string().min(5),
   notes:         z.string().optional(),
