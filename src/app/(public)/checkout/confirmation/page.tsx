@@ -2,12 +2,11 @@ import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
 import styles from './page.module.css';
 
+export const dynamic = 'force-dynamic';
 export const metadata = { title: 'Order Confirmed' };
 
-type ConfirmationPageProps = { searchParams: Promise<{ order?: string }> };
-
-export default async function ConfirmationPage({ searchParams }: ConfirmationPageProps) {
-  const { order: orderId } = await searchParams;
+export default async function ConfirmationPage({ searchParams }: { searchParams: { order?: string } }) {
+  const orderId = searchParams.order;
   const order = orderId
     ? await prisma.order.findUnique({
         where: { id: orderId },

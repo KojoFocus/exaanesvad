@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { fieldPhoto } from '@/lib/fieldPhotos';
 import styles from './page.module.css';
 
-export const revalidate = 60;
+export const dynamic = 'force-dynamic';
 
 type ActivityDetailPageProps = { params: Promise<{ slug: string }> };
 

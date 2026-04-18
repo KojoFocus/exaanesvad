@@ -6,7 +6,7 @@ import HeroCarousel from '@/components/HeroCarousel';
 import { fieldPhoto } from '@/lib/fieldPhotos';
 import styles from './home.module.css';
 
-export const revalidate = 60;
+export const dynamic = 'force-dynamic';
 
 const TICKER_ITEMS = [
   'Skills Training', 'Community Empowerment', 'Dignified Livelihoods',

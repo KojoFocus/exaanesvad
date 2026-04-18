@@ -4,7 +4,7 @@ import Image from 'next/image';
 import styles from './page.module.css';
 
 export const metadata = { title: 'Shop' };
-export const revalidate = 60;
+export const dynamic = 'force-dynamic';
 
 type ShopPageProps = { searchParams: Promise<{ category?: string }> };
 

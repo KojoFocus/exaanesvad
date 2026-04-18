@@ -5,7 +5,7 @@ import { fieldPhoto } from '@/lib/fieldPhotos';
 import styles from './page.module.css';
 
 export const metadata = { title: 'Activities' };
-export const revalidate = 60;
+export const dynamic = 'force-dynamic';
 
 const CATEGORIES = ['Training', 'Workshop', 'Outreach', 'Certification'];
 

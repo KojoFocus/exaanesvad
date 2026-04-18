@@ -2,7 +2,7 @@ import { prisma } from '@/lib/prisma';
 import styles from './page.module.css';
 
 export const metadata = { title: 'Videos' };
-export const revalidate = 60;
+export const dynamic = 'force-dynamic';
 
 export default async function VideosPage() {
   const videos = await prisma.video.findMany({

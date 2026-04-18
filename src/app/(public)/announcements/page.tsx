@@ -3,7 +3,7 @@ import Link from 'next/link';
 import styles from './page.module.css';
 
 export const metadata = { title: 'Updates & Announcements' };
-export const revalidate = 60;
+export const dynamic = 'force-dynamic';
 
 export default async function AnnouncementsPage() {
   const items = await prisma.announcement.findMany({

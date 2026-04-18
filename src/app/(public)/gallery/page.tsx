@@ -4,7 +4,7 @@ import Link from 'next/link';
 import styles from './page.module.css';
 
 export const metadata = { title: 'Gallery' };
-export const revalidate = 60;
+export const dynamic = 'force-dynamic';
 
 const CATEGORIES = ['Trainings', 'Products', 'Community'];
 

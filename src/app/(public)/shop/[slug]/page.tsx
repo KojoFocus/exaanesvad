@@ -5,7 +5,7 @@ import Image from 'next/image';
 import AddToCartButton from './AddToCartButton';
 import styles from './page.module.css';
 
-export const revalidate = 60;
+export const dynamic = 'force-dynamic';
 
 type ProductDetailPageProps = { params: Promise<{ slug: string }> };
 
