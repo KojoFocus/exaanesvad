@@ -57,43 +57,6 @@ export default async function HomePage() {
         </div>
       </div>
 
-      {/* Mission section */}
-      <section className={styles.missionSection}>
-        <div className={styles.missionLeft}>
-          <p className={styles.missionLabel}>Our purpose</p>
-          <h2 className={styles.missionHeadline}>
-            Where craft meets <em>commerce</em> —<br />and purpose meets profit.
-          </h2>
-          <p className={styles.missionText}>
-            EXA Ventures &amp; Anesvad is a socio-economic empowerment programme supporting
-            people living with NTDs, persons with disabilities, caregivers, and vulnerable
-            women in Ghana — building skills, dignity, and sustainable livelihoods.
-          </p>
-          <Link href="/about" className={styles.missionCta}>Discover the programme →</Link>
-        </div>
-        <div className={styles.missionRight}>
-          <div className={styles.missionQuote}>
-            <p className={styles.missionQuoteText}>
-              &ldquo;Every product you purchase supports a livelihood — and the
-              dignity of someone who built it.&rdquo;
-            </p>
-            <p className={styles.missionQuoteCite}>EXA-ANESVAD Programme</p>
-          </div>
-          <div className={styles.missionPartners}>
-            <div className={styles.missionPartner}>
-              <span className={`${styles.missionPartnerLogo} ${styles.green}`}>Divine EXA Ventures</span>
-              <span className={styles.missionPartnerDesc}>Ghanaian enterprise development &amp; community empowerment</span>
-            </div>
-            <div className={styles.missionPartner}>
-              <span className={`${styles.missionPartnerLogo} ${styles.gold}`}>anesvad Foundation</span>
-              <span className={styles.missionPartnerDesc}>Spanish NGO · 50+ years of global health &amp; rights work</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className={styles.divider} />
-
       {/* Featured Products */}
       <section className={styles.productsSection}>
         <div className={styles.secHeader}>
@@ -171,6 +134,41 @@ export default async function HomePage() {
             ))}
           </div>
         )}
+      </section>
+
+      {/* Mission section */}
+      <section className={styles.missionSection}>
+        <div className={styles.missionLeft}>
+          <p className={styles.missionLabel}>Our purpose</p>
+          <h2 className={styles.missionHeadline}>
+            Where craft meets <em>commerce</em> —<br />and purpose meets profit.
+          </h2>
+          <p className={styles.missionText}>
+            EXA Ventures &amp; Anesvad is a socio-economic empowerment programme supporting
+            people living with NTDs, persons with disabilities, caregivers, and vulnerable
+            women in Ghana — building skills, dignity, and sustainable livelihoods.
+          </p>
+          <Link href="/about" className={styles.missionCta}>Discover the programme →</Link>
+        </div>
+        <div className={styles.missionRight}>
+          <div className={styles.missionQuote}>
+            <p className={styles.missionQuoteText}>
+              &ldquo;Every product you purchase supports a livelihood — and the
+              dignity of someone who built it.&rdquo;
+            </p>
+            <p className={styles.missionQuoteCite}>EXA Ventures &amp; Anesvad Programme</p>
+          </div>
+          <div className={styles.missionPartners}>
+            <div className={styles.missionPartner}>
+              <span className={`${styles.missionPartnerLogo} ${styles.green}`}>Divine EXA Ventures</span>
+              <span className={styles.missionPartnerDesc}>Ghanaian enterprise development &amp; community empowerment</span>
+            </div>
+            <div className={styles.missionPartner}>
+              <span className={`${styles.missionPartnerLogo} ${styles.gold}`}>anesvad Foundation</span>
+              <span className={styles.missionPartnerDesc}>Spanish NGO · 50+ years of global health &amp; rights work</span>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Partner band */}
