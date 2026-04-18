@@ -15,9 +15,9 @@ const TICKER_ITEMS = [
 ];
 
 const IMPACT = [
-  { n: '90',   l: 'Beneficiaries enrolled'  },
+  { n: '110',  l: 'Beneficiaries enrolled'  },
   { n: '4',    l: 'Communities reached'     },
-  { n: '76',   l: 'Women & girls supported' },
+  { n: '86',   l: 'Women & girls supported' },
   { n: '50+',  l: 'Communities surveyed'    },
 ];
 

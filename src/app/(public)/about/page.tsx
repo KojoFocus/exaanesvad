@@ -73,7 +73,7 @@ export default function AboutPage() {
           </div>
           <div className={styles.problemStats}>
             <div className={styles.problemStat}>
-              <div className={styles.problemStatNum}>90</div>
+              <div className={styles.problemStatNum}>110</div>
               <div className={styles.problemStatLbl}>Beneficiaries enrolled across 4 communities in Ghana</div>
             </div>
             <div className={styles.problemStat}>
