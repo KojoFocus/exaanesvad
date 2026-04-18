@@ -5,8 +5,8 @@ import styles from './page.module.css';
 export const dynamic = 'force-dynamic';
 export const metadata = { title: 'Order Confirmed' };
 
-export default async function ConfirmationPage({ searchParams }: { searchParams: { order?: string } }) {
-  const orderId = searchParams.order;
+export default async function ConfirmationPage({ searchParams }: { searchParams: Promise<{ order?: string }> }) {
+  const { order: orderId } = await searchParams;
   const order = orderId
     ? await prisma.order.findUnique({
         where: { id: orderId },
