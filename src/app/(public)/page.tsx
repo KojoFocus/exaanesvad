@@ -14,12 +14,6 @@ const TICKER_ITEMS = [
   'Powered by Anesvad Foundation',
 ];
 
-const IMPACT = [
-  { n: '110',  l: 'Beneficiaries enrolled'  },
-  { n: '4',    l: 'Communities reached'     },
-  { n: '86',   l: 'Women & girls supported' },
-  { n: '50+',  l: 'Communities surveyed'    },
-];
 
 export default async function HomePage() {
   const [featuredProducts, recentActivities, announcement] = await Promise.all([
@@ -60,18 +54,6 @@ export default async function HomePage() {
             i > 0 ? <span key={`sep-${i}`} className={styles.stripSep} /> : null,
             <span key={item} className={styles.stripItem}>{item}</span>,
           ])}
-        </div>
-      </div>
-
-      {/* Impact stats band */}
-      <div className={styles.impactBand}>
-        <div className={styles.impactBandInner}>
-          {IMPACT.map(s => (
-            <div key={s.l} className={styles.impactStat}>
-              <div className={styles.impactNum}>{s.n}</div>
-              <div className={styles.impactLabel}>{s.l}</div>
-            </div>
-          ))}
         </div>
       </div>
 
