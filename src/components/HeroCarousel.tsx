@@ -5,10 +5,10 @@ import Image from 'next/image';
 import styles from './HeroCarousel.module.css';
 
 const STATS = [
-  { n: '420+', l: 'Beneficiaries' },
-  { n: '18',   l: 'Programmes'   },
-  { n: '6',    l: 'Communities'  },
-  { n: '580k', l: 'GHS supported'},
+  { n: '90',  l: 'Beneficiaries enrolled' },
+  { n: '4',   l: 'Communities reached'   },
+  { n: '76',  l: 'Women supported'       },
+  { n: '50+', l: 'Communities surveyed'  },
 ];
 
 export default function Hero() {

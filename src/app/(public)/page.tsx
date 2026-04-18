@@ -9,16 +9,16 @@ import styles from './home.module.css';
 export const dynamic = 'force-dynamic';
 
 const TICKER_ITEMS = [
-  'Skills Training', 'Community Empowerment', 'Dignified Livelihoods',
-  'Artisan Commerce', 'Field Activities', 'Vocational Education',
-  'Ghana · West Africa', 'Powered by Anesvad Foundation',
+  'NTD Support', 'Skills Training', 'Community Empowerment', 'Dignified Livelihoods',
+  'Artisan Commerce', 'Field Activities', 'Nima · Ashaiman · Ningo-Prampram · Ho',
+  'Powered by Anesvad Foundation',
 ];
 
 const IMPACT = [
-  { n: '420+',  l: 'Beneficiaries trained' },
-  { n: '18',    l: 'Programmes run'        },
-  { n: '6',     l: 'Communities reached'   },
-  { n: '580k',  l: 'GHS in livelihoods'    },
+  { n: '90',   l: 'Beneficiaries enrolled'  },
+  { n: '4',    l: 'Communities reached'     },
+  { n: '76',   l: 'Women & girls supported' },
+  { n: '50+',  l: 'Communities surveyed'    },
 ];
 
 export default async function HomePage() {
@@ -83,9 +83,9 @@ export default async function HomePage() {
             Where craft meets <em>commerce</em> —<br />and purpose meets profit.
           </h2>
           <p className={styles.missionText}>
-            EXA-ANESVAD is a socio-economic empowerment programme that trains
-            marginalised communities in Ghana through vocational skills, then
-            connects their goods directly to buyers who value both craft and conscience.
+            EXA Ventures &amp; Anesvad is a socio-economic empowerment programme supporting
+            people living with NTDs, persons with disabilities, caregivers, and vulnerable
+            women in Ghana — building skills, dignity, and sustainable livelihoods.
           </p>
           <Link href="/about" className={styles.missionCta}>Discover the programme →</Link>
         </div>

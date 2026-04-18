@@ -7,18 +7,18 @@ export const metadata = { title: 'About' };
 const PILLARS = [
   {
     n: '01',
-    title: 'Skills training',
-    body: 'Structured vocational programmes in crafts, food processing, textiles, and soap-making — certified and built for real, lasting income.',
+    title: 'Assessment & enrolment',
+    body: 'Community surveys, psychosocial assessments, and beneficiary enrolment across Nima, Ashaiman, Ningo-Prampram, and Ho — identifying high-need individuals for targeted support.',
   },
   {
     n: '02',
-    title: 'Enterprise support',
-    body: 'Financial literacy, business planning, record-keeping, and micro-enterprise setup — turning artisans into entrepreneurs.',
+    title: 'Skills & enterprise training',
+    body: 'Structured vocational programmes in crafts, food processing, textiles, and soap-making — paired with financial literacy, business planning, and micro-enterprise setup.',
   },
   {
     n: '03',
-    title: 'Market access',
-    body: 'This platform connects trained producers directly to buyers, turning community work into measurable economic impact.',
+    title: 'Market access & livelihoods',
+    body: 'This platform connects trained producers directly to buyers, turning community work into measurable economic impact and sustained dignified income.',
   },
 ];
 
@@ -34,8 +34,9 @@ export default function AboutPage() {
               Empowering people through skills, <em>dignity</em>, and community.
             </h1>
             <p className={styles.sub}>
-              EXA-ANESVAD lifts marginalised individuals — particularly women and youth — through vocational
-              training, enterprise development, and direct market access across Ghana.
+              EXA Ventures &amp; Anesvad lifts marginalised individuals — people living with NTDs,
+              persons with disabilities, caregivers, and vulnerable women — through assessment,
+              skills training, and enterprise development across Nima, Ashaiman, Ningo-Prampram, and Ho.
             </p>
           </div>
           <div className={styles.aside}>
@@ -72,12 +73,12 @@ export default function AboutPage() {
           </div>
           <div className={styles.problemStats}>
             <div className={styles.problemStat}>
-              <div className={styles.problemStatNum}>420+</div>
-              <div className={styles.problemStatLbl}>Beneficiaries trained across 6 communities in Ghana</div>
+              <div className={styles.problemStatNum}>90</div>
+              <div className={styles.problemStatLbl}>Beneficiaries enrolled across 4 communities in Ghana</div>
             </div>
             <div className={styles.problemStat}>
-              <div className={styles.problemStatNum}>580k</div>
-              <div className={styles.problemStatLbl}>GHS in livelihoods generated through programme activities</div>
+              <div className={styles.problemStatNum}>50+</div>
+              <div className={styles.problemStatLbl}>Communities surveyed and mapped during assessment phase</div>
             </div>
           </div>
         </div>
@@ -103,7 +104,7 @@ export default function AboutPage() {
         <p className={styles.quoteText}>
           &ldquo;Every product you purchase supports a livelihood — and the dignity of someone who built it with their own hands.&rdquo;
         </p>
-        <p className={styles.quoteCite}>EXA-ANESVAD Programme</p>
+        <p className={styles.quoteCite}>EXA Ventures &amp; Anesvad Programme</p>
       </div>
 
       {/* Partnership */}
@@ -112,9 +113,9 @@ export default function AboutPage() {
           <p className={styles.secLabel}>Our partners</p>
           <h2 className={styles.secTitle}>Ghanaian initiative. Global backing.</h2>
           <p style={{ fontSize: '14px', color: '#777', lineHeight: '1.85', marginBottom: '24px' }}>
-            EXA-ANESVAD is built on the complementary strengths of two organisations — local enterprise
-            expertise from Divine EXA Ventures and 50 years of international development credibility from
-            Anesvad Foundation.
+            EXA Ventures &amp; Anesvad is built on the complementary strengths of two organisations — local
+            enterprise expertise from Divine EXA Ventures and 50 years of international development
+            credibility from Anesvad Foundation.
           </p>
           <Link href="/contact" style={{
             display: 'inline-flex', alignItems: 'center', gap: '6px',
