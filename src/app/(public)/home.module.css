@@ -144,7 +144,7 @@
   font-family: var(--serif);
   font-size: clamp(28px, 2.8vw, 42px);
   font-weight: 400;
-  color: #111;
+  color: #2C2C2C;
   line-height: 1.22;
   letter-spacing: -0.5px;
   margin-bottom: 24px;
@@ -251,7 +251,7 @@
   font-family: var(--serif);
   font-size: clamp(20px, 1.8vw, 27px);
   font-weight: 400;
-  color: #111;
+  color: #2C2C2C;
   letter-spacing: -0.3px;
   line-height: 1.1;
 }
@@ -267,7 +267,7 @@
   white-space: nowrap;
   transition: color 0.15s, border-color 0.15s;
 }
-.secLink:hover { color: #111; border-color: #111; }
+.secLink:hover { color: #2C2C2C; border-color: #2C2C2C; }
 
 /* ── Products Section ── */
 .productsSection {
@@ -318,7 +318,7 @@
   font-family: var(--sans);
   font-size: 14px;
   font-weight: 500;
-  color: #111;
+  color: #2C2C2C;
   margin-bottom: 8px;
   line-height: 1.35;
 }
@@ -330,7 +330,7 @@
 .productPrice {
   font-family: var(--serif);
   font-size: 17px;
-  color: #111;
+  color: #2C2C2C;
   letter-spacing: -0.3px;
 }
 .productTag {
@@ -408,7 +408,7 @@
   font-family: var(--sans);
   font-size: 15px;
   font-weight: 500;
-  color: #111;
+  color: #2C2C2C;
   margin-bottom: 8px;
   line-height: 1.35;
 }

@@ -8,7 +8,7 @@
   font-family: var(--sans);
   font-size: 18px;
   font-weight: 600;
-  color: #111;
+  color: #2C2C2C;
   letter-spacing: -0.3px;
 }
 .sub {
@@ -45,7 +45,7 @@
 }
 .table tr:last-child td { border-bottom: none; }
 .table tbody tr:hover td { background: #FAFAFA; }
-.productName { font-weight: 500; color: #111; }
+.productName { font-weight: 500; color: #2C2C2C; }
 .outOfStock  { color: #E44; }
 .actions { display: flex; gap: 6px; flex-wrap: wrap; }
 .empty {

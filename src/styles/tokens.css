@@ -12,7 +12,7 @@
   --blue-wash:    #EBF2FD;
 
   /* Surface */
-  --ink:          #0A0A0A;
+  --ink:          #2C2C2C;
   --ink-2:        #3A3A3A;
   --ink-3:        #6B6B6B;
   --ink-4:        #9E9E9E;
@@ -42,12 +42,12 @@
   --warm-white:       #FAFAF6;
   --warm-gray:        #F2F1EC;
   --border-strong:    #D0CCC4;
-  --text:             #0A0A0A;
+  --text:             #2C2C2C;
   --text-mid:         #3A3A3A;
   --text-muted:       #6B6B6B;
   --g:    #4FA637; --g-l: #E4F5DE; --g-d: #357224;
   --b:    #1565D8; --b-l: #EBF2FD;
-  --ink2: #3A3A3A; --ink3: #6B6B6B;
+  --ink2: #3A3A3A; --ink3: #6B6B6B; --ink: #2C2C2C;
   --bg:   #FAFAF6; --sur: #FFFFFF;
   --bdr:  #E8E5DF; --bdr2: #D0CCC4;
 
