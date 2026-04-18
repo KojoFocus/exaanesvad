@@ -462,6 +462,8 @@
   background: var(--green);
   color: #fff;
   text-decoration: none;
+  border: none;
+  cursor: pointer;
   transition: opacity 0.15s;
 }
 .shopCtaBtn:hover { opacity: 0.88; }
