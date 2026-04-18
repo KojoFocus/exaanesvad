@@ -77,6 +77,8 @@
   background: var(--green);
   padding: 14px 28px;
   text-decoration: none;
+  border: none;
+  cursor: pointer;
   transition: opacity 0.15s;
   white-space: nowrap;
 }
