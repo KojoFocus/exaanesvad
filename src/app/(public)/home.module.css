@@ -216,7 +216,7 @@
   flex-shrink: 0;
 }
 .missionPartnerLogo.green { color: var(--green); }
-.missionPartnerLogo.gold  { color: #8B6914; }
+.missionPartnerLogo.gold  { color: #056CF2; }
 .missionPartnerDesc {
   font-family: var(--sans);
   font-size: 11.5px;

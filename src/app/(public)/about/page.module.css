@@ -66,7 +66,7 @@
 }
 .partnerBlock:last-child { margin-bottom: 0; }
 .pLogoGreen { font-family: var(--serif); font-size: 14px; color: var(--green); margin-bottom: 4px; }
-.pLogoGold  { font-family: var(--serif); font-size: 14px; color: #8B6914; margin-bottom: 4px; }
+.pLogoGold  { font-family: var(--serif); font-size: 14px; color: #056CF2; margin-bottom: 4px; }
 .pDesc { font-size: 11.5px; color: var(--ink-4); line-height: 1.55; }
 
 /* ── Problem statement (intentional dark band — keep) ── */
@@ -234,7 +234,7 @@
   background: var(--bg);
 }
 .partnerCardName { font-family: var(--serif); font-size: 16px; color: var(--green); margin-bottom: 4px; }
-.partnerCardName.gold { color: #8B6914; }
+.partnerCardName.gold { color: #056CF2; }
 .partnerCardRole {
   font-family: var(--sans);
   font-size: 9px;
