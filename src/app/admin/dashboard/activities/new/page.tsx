@@ -1,5 +1,6 @@
 import { createActivity } from '../actions';
 import Link from 'next/link';
+import ImageUpload from '@/components/admin/ImageUpload';
 import styles from '../../products/new/page.module.css';
 
 export const metadata = { title: 'Add Activity' };
@@ -26,6 +27,10 @@ export default function NewActivityPage() {
               </select>
             </div>
           </div>
+        </div>
+        <div className={styles.section}>
+          <h2 className={styles.secTitle}>Media</h2>
+          <ImageUpload name="featuredImage" />
         </div>
         <div className={styles.section}>
           <h2 className={styles.secTitle}>Visibility</h2>

@@ -56,7 +56,7 @@ export default function Hero() {
       {/* ── Right: image ── */}
       <div className={styles.right}>
         <Image
-          src="/hero/A1.2_Photo_Nima_2026-02-28_01.jpeg"
+          src="/hero/hero.jpeg"
           alt="EXA-ANESVAD field activity — NTD programme community session"
           fill
           priority

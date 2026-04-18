@@ -5,17 +5,18 @@ import { prisma } from '@/lib/prisma';
 import slugify from 'slugify';
 
 export async function createActivity(formData: FormData) {
-  const title        = formData.get('title') as string;
-  const summary      = formData.get('summary') as string;
-  const content      = formData.get('content') as string;
-  const location     = formData.get('location') as string;
-  const category     = formData.get('category') as string;
-  const activityDate = new Date(formData.get('activityDate') as string);
-  const published    = formData.get('published') === 'on';
-  const slug         = slugify(title, { lower: true, strict: true });
+  const title         = formData.get('title') as string;
+  const summary       = formData.get('summary') as string;
+  const content       = formData.get('content') as string;
+  const location      = formData.get('location') as string;
+  const category      = formData.get('category') as string;
+  const activityDate  = new Date(formData.get('activityDate') as string);
+  const published     = formData.get('published') === 'on';
+  const featuredImage = (formData.get('featuredImage') as string) || null;
+  const slug          = slugify(title, { lower: true, strict: true });
 
   await prisma.activity.create({
-    data: { title, slug, summary, content, location, category, activityDate, published },
+    data: { title, slug, summary, content, location, category, activityDate, published, featuredImage },
   });
 
   revalidatePath('/admin/dashboard/activities');
@@ -24,18 +25,19 @@ export async function createActivity(formData: FormData) {
 }
 
 export async function updateActivity(id: string, formData: FormData) {
-  const title        = formData.get('title') as string;
-  const summary      = formData.get('summary') as string;
-  const content      = formData.get('content') as string;
-  const location     = formData.get('location') as string;
-  const category     = formData.get('category') as string;
-  const activityDate = new Date(formData.get('activityDate') as string);
-  const published    = formData.get('published') === 'on';
-  const slug         = slugify(title, { lower: true, strict: true });
+  const title         = formData.get('title') as string;
+  const summary       = formData.get('summary') as string;
+  const content       = formData.get('content') as string;
+  const location      = formData.get('location') as string;
+  const category      = formData.get('category') as string;
+  const activityDate  = new Date(formData.get('activityDate') as string);
+  const published     = formData.get('published') === 'on';
+  const featuredImage = (formData.get('featuredImage') as string) || null;
+  const slug          = slugify(title, { lower: true, strict: true });
 
   await prisma.activity.update({
     where: { id },
-    data: { title, slug, summary, content, location, category, activityDate, published },
+    data: { title, slug, summary, content, location, category, activityDate, published, featuredImage },
   });
 
   revalidatePath('/admin/dashboard/activities');

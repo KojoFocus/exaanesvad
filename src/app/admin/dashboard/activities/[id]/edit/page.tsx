@@ -2,6 +2,7 @@ import { prisma } from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { updateActivity } from '../../actions';
+import ImageUpload from '@/components/admin/ImageUpload';
 import styles from '../../../products/new/page.module.css';
 
 export const metadata = { title: 'Edit Activity' };
@@ -37,6 +38,10 @@ export default async function EditActivityPage({ params }: EditActivityPageProps
               </select>
             </div>
           </div>
+        </div>
+        <div className={styles.section}>
+          <h2 className={styles.secTitle}>Media</h2>
+          <ImageUpload name="featuredImage" defaultValue={a.featuredImage} />
         </div>
         <div className={styles.section}>
           <h2 className={styles.secTitle}>Visibility</h2>
