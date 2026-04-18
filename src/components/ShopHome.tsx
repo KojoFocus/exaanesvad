@@ -13,8 +13,6 @@ export default function ShopHome({ featuredProducts, announcement }: HomeData) {
       <section className={styles.hero}>
 
         <div className={styles.heroContent}>
-          <p className={styles.heroEyebrow}>100% Organic · Made in Ghana</p>
-
           <h1 className={styles.heroHeadline}>
             Tough on Dirt.<br />Safe on Hands.
           </h1>
