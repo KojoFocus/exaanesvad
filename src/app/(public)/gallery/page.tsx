@@ -8,12 +8,15 @@ export const revalidate = 60;
 
 const CATEGORIES = ['Trainings', 'Products', 'Community'];
 
+type GalleryPageProps = {
+  searchParams: Promise<{ category?: string }>;
+};
+
 export default async function GalleryPage({
   searchParams,
-}: {
-  searchParams: { category?: string };
-}) {
-  const activeCategory = searchParams.category ?? null;
+}: GalleryPageProps) {
+  const { category } = await searchParams;
+  const activeCategory = category ?? null;
 
   const items = await prisma.galleryItem.findMany({
     where: activeCategory ? { category: activeCategory } : {},

@@ -7,9 +7,12 @@ import styles from '../../new/page.module.css';
 
 export const metadata = { title: 'Edit Product' };
 
-export default async function EditProductPage({ params }: { params: { id: string } }) {
+type EditProductPageProps = { params: Promise<{ id: string }> };
+
+export default async function EditProductPage({ params }: EditProductPageProps) {
+  const { id } = await params;
   const [product, categories] = await Promise.all([
-    prisma.product.findUnique({ where: { id: params.id } }),
+    prisma.product.findUnique({ where: { id } }),
     prisma.category.findMany({ orderBy: { name: 'asc' } }),
   ]);
   if (!product) notFound();

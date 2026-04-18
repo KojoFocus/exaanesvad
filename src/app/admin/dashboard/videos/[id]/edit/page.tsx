@@ -8,8 +8,11 @@ export const metadata = { title: 'Edit Video' };
 
 const CATEGORIES = ['Training', 'Workshop', 'Community', 'Impact', 'General'];
 
-export default async function EditVideoPage({ params }: { params: { id: string } }) {
-  const video = await prisma.video.findUnique({ where: { id: params.id } });
+type EditVideoPageProps = { params: Promise<{ id: string }> };
+
+export default async function EditVideoPage({ params }: EditVideoPageProps) {
+  const { id } = await params;
+  const video = await prisma.video.findUnique({ where: { id } });
   if (!video) notFound();
 
   const action = updateVideo.bind(null, video.id);

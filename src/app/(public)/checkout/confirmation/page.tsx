@@ -4,8 +4,10 @@ import styles from './page.module.css';
 
 export const metadata = { title: 'Order Confirmed' };
 
-export default async function ConfirmationPage({ searchParams }: { searchParams: { order?: string } }) {
-  const orderId = searchParams.order;
+type ConfirmationPageProps = { searchParams: Promise<{ order?: string }> };
+
+export default async function ConfirmationPage({ searchParams }: ConfirmationPageProps) {
+  const { order: orderId } = await searchParams;
   const order = orderId
     ? await prisma.order.findUnique({
         where: { id: orderId },

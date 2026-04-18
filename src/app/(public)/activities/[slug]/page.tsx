@@ -7,15 +7,19 @@ import styles from './page.module.css';
 
 export const revalidate = 60;
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const activity = await prisma.activity.findUnique({ where: { slug: params.slug } });
+type ActivityDetailPageProps = { params: Promise<{ slug: string }> };
+
+export async function generateMetadata({ params }: ActivityDetailPageProps) {
+  const { slug } = await params;
+  const activity = await prisma.activity.findUnique({ where: { slug } });
   if (!activity) return {};
   return { title: activity.title, description: activity.summary };
 }
 
-export default async function ActivityDetailPage({ params }: { params: { slug: string } }) {
+export default async function ActivityDetailPage({ params }: ActivityDetailPageProps) {
+  const { slug } = await params;
   const [activity, related] = await Promise.all([
-    prisma.activity.findUnique({ where: { slug: params.slug, published: true } }),
+    prisma.activity.findUnique({ where: { slug, published: true } }),
     prisma.activity.findMany({
       where: { published: true },
       orderBy: { activityDate: 'desc' },

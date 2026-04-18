@@ -6,8 +6,11 @@ import styles from '../../../products/new/page.module.css';
 
 export const metadata = { title: 'Edit Announcement' };
 
-export default async function EditAnnouncementPage({ params }: { params: { id: string } }) {
-  const a = await prisma.announcement.findUnique({ where: { id: params.id } });
+type EditAnnouncementPageProps = { params: Promise<{ id: string }> };
+
+export default async function EditAnnouncementPage({ params }: EditAnnouncementPageProps) {
+  const { id } = await params;
+  const a = await prisma.announcement.findUnique({ where: { id } });
   if (!a) notFound();
 
   const action = updateAnnouncement.bind(null, a.id);

@@ -7,16 +7,20 @@ import styles from './page.module.css';
 
 export const revalidate = 60;
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const product = await prisma.product.findUnique({ where: { slug: params.slug } });
+type ProductDetailPageProps = { params: Promise<{ slug: string }> };
+
+export async function generateMetadata({ params }: ProductDetailPageProps) {
+  const { slug } = await params;
+  const product = await prisma.product.findUnique({ where: { slug } });
   if (!product) return {};
   return { title: product.name, description: product.shortDescription };
 }
 
-export default async function ProductDetailPage({ params }: { params: { slug: string } }) {
+export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
+  const { slug } = await params;
   const [product, related] = await Promise.all([
     prisma.product.findUnique({
-      where: { slug: params.slug, published: true },
+      where: { slug, published: true },
       include: { category: true },
     }),
     prisma.product.findMany({

@@ -6,12 +6,15 @@ import styles from './page.module.css';
 export const metadata = { title: 'Shop' };
 export const revalidate = 60;
 
-export default async function ShopPage({ searchParams }: { searchParams: { category?: string } }) {
+type ShopPageProps = { searchParams: Promise<{ category?: string }> };
+
+export default async function ShopPage({ searchParams }: ShopPageProps) {
+  const { category } = await searchParams;
   const [products, categories] = await Promise.all([
     prisma.product.findMany({
       where: {
         published: true,
-        ...(searchParams.category ? { category: { slug: searchParams.category } } : {}),
+        ...(category ? { category: { slug: category } } : {}),
       },
       include: { category: true },
       orderBy: { createdAt: 'desc' },
@@ -33,7 +36,7 @@ export default async function ShopPage({ searchParams }: { searchParams: { categ
             <div className={styles.sideLabel}>Category</div>
             <Link
               href="/shop"
-              className={`${styles.filterItem} ${!searchParams.category ? styles.filterActive : ''}`}
+              className={`${styles.filterItem} ${!category ? styles.filterActive : ''}`}
             >
               All products
             </Link>
@@ -41,7 +44,7 @@ export default async function ShopPage({ searchParams }: { searchParams: { categ
               <Link
                 key={c.id}
                 href={`/shop?category=${c.slug}`}
-                className={`${styles.filterItem} ${searchParams.category === c.slug ? styles.filterActive : ''}`}
+                className={`${styles.filterItem} ${category === c.slug ? styles.filterActive : ''}`}
               >
                 {c.name}
               </Link>
@@ -59,7 +62,7 @@ export default async function ShopPage({ searchParams }: { searchParams: { categ
           <div className={styles.toolbar}>
             <span className={styles.count}>
               {products.length} product{products.length !== 1 ? 's' : ''}
-              {searchParams.category ? ` in ${categories.find(c => c.slug === searchParams.category)?.name ?? searchParams.category}` : ''}
+              {category ? ` in ${categories.find(c => c.slug === category)?.name ?? category}` : ''}
             </span>
           </div>
 

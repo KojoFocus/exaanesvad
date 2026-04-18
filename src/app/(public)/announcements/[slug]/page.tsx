@@ -5,15 +5,19 @@ import styles from './page.module.css';
 
 export const revalidate = 60;
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const item = await prisma.announcement.findUnique({ where: { slug: params.slug } });
+type AnnouncementDetailPageProps = { params: Promise<{ slug: string }> };
+
+export async function generateMetadata({ params }: AnnouncementDetailPageProps) {
+  const { slug } = await params;
+  const item = await prisma.announcement.findUnique({ where: { slug } });
   if (!item) return {};
   return { title: item.title, description: item.summary };
 }
 
-export default async function AnnouncementDetailPage({ params }: { params: { slug: string } }) {
+export default async function AnnouncementDetailPage({ params }: AnnouncementDetailPageProps) {
+  const { slug } = await params;
   const [item, recent] = await Promise.all([
-    prisma.announcement.findUnique({ where: { slug: params.slug, published: true } }),
+    prisma.announcement.findUnique({ where: { slug, published: true } }),
     prisma.announcement.findMany({
       where: { published: true },
       orderBy: { createdAt: 'desc' },

@@ -9,12 +9,15 @@ export const revalidate = 60;
 
 const CATEGORIES = ['Training', 'Workshop', 'Outreach', 'Certification'];
 
+type ActivitiesPageProps = {
+  searchParams: Promise<{ category?: string }>;
+};
+
 export default async function ActivitiesPage({
   searchParams,
-}: {
-  searchParams: { category?: string };
-}) {
-  const activeCategory = searchParams.category ?? null;
+}: ActivitiesPageProps) {
+  const { category } = await searchParams;
+  const activeCategory = category ?? null;
 
   const activities = await prisma.activity.findMany({
     where: {

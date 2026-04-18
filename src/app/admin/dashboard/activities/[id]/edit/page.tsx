@@ -6,8 +6,11 @@ import styles from '../../../products/new/page.module.css';
 
 export const metadata = { title: 'Edit Activity' };
 
-export default async function EditActivityPage({ params }: { params: { id: string } }) {
-  const a = await prisma.activity.findUnique({ where: { id: params.id } });
+type EditActivityPageProps = { params: Promise<{ id: string }> };
+
+export default async function EditActivityPage({ params }: EditActivityPageProps) {
+  const { id } = await params;
+  const a = await prisma.activity.findUnique({ where: { id } });
   if (!a) notFound();
 
   const action = updateActivity.bind(null, a.id);
