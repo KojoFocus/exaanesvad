@@ -1,10 +1,10 @@
 :root {
   /* Brand */
-  --green:        #1C4A1C;
-  --green-mid:    #2D6A2D;
-  --green-light:  #3D8B3D;
-  --green-pale:   #F0F7F0;
-  --green-wash:   #E8F4E8;
+  --green:        #4FA637;
+  --green-mid:    #3D8B2A;
+  --green-light:  #6CC24A;
+  --green-pale:   #F0F9ED;
+  --green-wash:   #E4F5DE;
   --gold:         #C9A84C;
   --gold-light:   #E8D08A;
   --gold-pale:    #FBF6E9;
@@ -22,19 +22,19 @@
   --border-mid:   #D0CCC4;
 
   /* Status */
-  --s-g-bg: #E8F4E8; --s-g-tx: #1C4A1C;
+  --s-g-bg: #E4F5DE; --s-g-tx: #2D6B1E;
   --s-b-bg: #EBF2FD; --s-b-tx: #0C447C;
   --s-w-bg: #FEF3C7; --s-w-tx: #92400E;
   --s-r-bg: #FEE2E2; --s-r-tx: #991B1B;
   --s-n-bg: #F4F3EF; --s-n-tx: #6B6B6B;
 
   /* Legacy aliases */
-  --exa-green:        #1C4A1C;
-  --exa-green-light:  #3D8B3D;
-  --exa-green-dark:   #122E12;
-  --exa-green-deep:   #0A1E0A;
-  --exa-green-wash:   #E8F4E8;
-  --exa-green-pale:   #F0F7F0;
+  --exa-green:        #4FA637;
+  --exa-green-light:  #6CC24A;
+  --exa-green-dark:   #357224;
+  --exa-green-deep:   #234D17;
+  --exa-green-wash:   #E4F5DE;
+  --exa-green-pale:   #F0F9ED;
   --ansvd-blue:       #1565D8;
   --ansvd-blue-light: #2B7BE8;
   --ansvd-blue-wash:  #EBF2FD;
@@ -45,7 +45,7 @@
   --text:             #0A0A0A;
   --text-mid:         #3A3A3A;
   --text-muted:       #6B6B6B;
-  --g:    #1C4A1C; --g-l: #E8F4E8; --g-d: #122E12;
+  --g:    #4FA637; --g-l: #E4F5DE; --g-d: #357224;
   --b:    #1565D8; --b-l: #EBF2FD;
   --ink2: #3A3A3A; --ink3: #6B6B6B;
   --bg:   #FAFAF6; --sur: #FFFFFF;

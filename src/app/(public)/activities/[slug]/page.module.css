@@ -16,7 +16,7 @@
 .heroImgPlaceholder {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--green) 0%, #0A1E0A 100%);
+  background: linear-gradient(135deg, var(--green) 0%, #357224 100%);
 }
 .heroContent { position: relative; z-index: 2; padding: 48px var(--px); width: 100%; max-width: 900px; }
 

@@ -33,9 +33,9 @@ export default async function ActivityDetailPage({ params }: ActivityDetailPageP
   const relatedActivities = related.filter(a => a.id !== activity.id).slice(0, 3);
 
   const BADGE_COLOR: Record<string, string> = {
-    Training:      '#1C4A1C',
+    Training:      '#4FA637',
     Workshop:      '#92400E',
-    Certification: '#1C4A1C',
+    Certification: '#4FA637',
     Outreach:      '#0C447C',
   };
 
