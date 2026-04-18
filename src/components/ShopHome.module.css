@@ -52,7 +52,7 @@
   font-family: var(--serif);
   font-size: clamp(32px, 5.5vw, 64px);
   font-weight: 400;
-  color: var(--ink);
+  color: #2C2C2C;
   text-align: center;
   line-height: 1.1;
   letter-spacing: -1px;
@@ -282,7 +282,7 @@
   font-family: var(--serif);
   font-size: clamp(18px, 1.8vw, 24px);
   font-weight: 400;
-  color: var(--ink);
+  color: #2C2C2C;
   letter-spacing: -0.3px;
   margin-bottom: 10px;
   line-height: 1.2;
