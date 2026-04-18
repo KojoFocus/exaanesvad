@@ -1,0 +1,124 @@
+.aside {
+  background: #0A0A0A;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  border-right: 1px solid #1A1A1A;
+}
+
+.logo {
+  padding: 20px 20px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #1A1A1A;
+}
+.logoMark {
+  width: 24px;
+  height: 24px;
+  background: var(--green);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logoMarkDot {
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+}
+.logoText {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.nav {
+  padding: 12px 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.group {
+  padding: 16px 20px 6px;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  font-weight: 600;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 400;
+  padding: 9px 20px;
+  cursor: pointer;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  transition: color 0.12s, background 0.12s;
+  position: relative;
+}
+
+.item:hover {
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.04);
+}
+
+.active {
+  color: #fff !important;
+  background: rgba(255,255,255,0.06) !important;
+}
+.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--green);
+  border-radius: 0 2px 2px 0;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+.active .icon { opacity: 1; }
+.item:hover .icon { opacity: 0.8; }
+
+.bottom {
+  padding: 12px 0;
+  border-top: 1px solid #1A1A1A;
+}
+
+.signout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  padding: 9px 20px;
+  color: rgba(255,255,255,0.3);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  transition: color 0.12s, background 0.12s;
+  text-align: left;
+}
+.signout:hover {
+  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.04);
+}

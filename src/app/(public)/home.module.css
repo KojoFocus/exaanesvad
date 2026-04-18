@@ -1,0 +1,464 @@
+/* ── Announcement Banner ── */
+.announcementBanner {
+  background: #fff;
+  border-bottom: 1px solid #E8E8E8;
+  padding: 11px var(--px);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.annLabel {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #fff;
+  background: var(--green);
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+.annText  { font-family: var(--sans); font-size: 12.5px; color: #666; flex: 1; }
+.annLink  { font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--green); white-space: nowrap; text-decoration: none; }
+.annLink:hover { opacity: 0.7; }
+
+/* ── Thin strip ── */
+.strip {
+  border-bottom: 1px solid #E8E8E8;
+  padding: 13px var(--px);
+  overflow: hidden;
+}
+.stripInner {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: nowrap;
+}
+.stripItem {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #c0c0b8;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.stripSep {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--green);
+  opacity: 0.3;
+  flex-shrink: 0;
+}
+
+/* ── Impact Band ── */
+.impactBand {
+  background: var(--green);
+  padding: 48px var(--px);
+}
+.impactBandInner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.impactStat {
+  padding: 0 40px;
+  border-right: 1px solid rgba(255,255,255,0.12);
+  text-align: center;
+}
+.impactStat:first-child { padding-left: 0; }
+.impactStat:last-child  { border-right: none; }
+.impactNum {
+  font-family: var(--serif);
+  font-size: clamp(36px, 3.5vw, 52px);
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: -1.5px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.impactLabel {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ── Mission Section ── */
+.missionSection {
+  padding: 100px var(--px);
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.missionLeft {}
+.missionLabel {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.missionLabel::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--green);
+  flex-shrink: 0;
+}
+.missionHeadline {
+  font-family: var(--serif);
+  font-size: clamp(28px, 2.8vw, 42px);
+  font-weight: 400;
+  color: #111;
+  line-height: 1.22;
+  letter-spacing: -0.5px;
+  margin-bottom: 24px;
+}
+.missionHeadline em { font-style: italic; color: var(--green); }
+.missionText {
+  font-size: 14.5px;
+  color: #666;
+  line-height: 1.85;
+  margin-bottom: 32px;
+  max-width: 440px;
+}
+.missionCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 2px;
+  transition: opacity 0.15s;
+}
+.missionCta:hover { opacity: 0.65; }
+.missionRight {}
+.missionQuote {
+  border-left: 3px solid var(--green);
+  padding: 0 0 0 28px;
+  margin-bottom: 36px;
+}
+.missionQuoteText {
+  font-family: var(--serif);
+  font-size: clamp(18px, 1.8vw, 24px);
+  font-weight: 400;
+  font-style: italic;
+  color: #333;
+  line-height: 1.55;
+  letter-spacing: -0.2px;
+  margin-bottom: 12px;
+}
+.missionQuoteCite {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #bbb;
+}
+.missionPartners {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.missionPartner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border: 1px solid #E8E8E8;
+  background: #FAFAFA;
+}
+.missionPartnerLogo {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 400;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.missionPartnerLogo.green { color: var(--green); }
+.missionPartnerLogo.gold  { color: #8B6914; }
+.missionPartnerDesc {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  color: #888;
+  line-height: 1.5;
+}
+
+/* ── Divider ── */
+.divider {
+  height: 1px;
+  background: #E8E8E8;
+  margin: 0 var(--px);
+}
+
+/* ── Section Header ── */
+.secHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+.secNum {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-bottom: 8px;
+}
+.secTitle {
+  font-family: var(--serif);
+  font-size: clamp(20px, 1.8vw, 27px);
+  font-weight: 400;
+  color: #111;
+  letter-spacing: -0.3px;
+  line-height: 1.1;
+}
+.secLink {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: #999;
+  text-decoration: none;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 2px;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+}
+.secLink:hover { color: #111; border-color: #111; }
+
+/* ── Products Section ── */
+.productsSection {
+  padding: 80px var(--px);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: #E8E8E8;
+  border: 1px solid #E8E8E8;
+}
+.productCard {
+  text-decoration: none;
+  display: block;
+  background: #fff;
+  padding: 0;
+  overflow: hidden;
+}
+.productCard:hover .productImgWrap { opacity: 0.88; }
+.productImgWrap {
+  aspect-ratio: 3/2;
+  background: #F5F5F0;
+  overflow: hidden;
+  position: relative;
+  transition: opacity 0.35s;
+}
+.productImg {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #EEEEE8 0%, #E5E5DC 100%);
+}
+.productInfo {
+  padding: 18px 20px 22px;
+}
+.productCat {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-bottom: 5px;
+}
+.productName {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: #111;
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+.productFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.productPrice {
+  font-family: var(--serif);
+  font-size: 17px;
+  color: #111;
+  letter-spacing: -0.3px;
+}
+.productTag {
+  font-family: var(--sans);
+  font-size: 9.5px;
+  color: var(--green);
+  letter-spacing: 0.3px;
+  opacity: 0.7;
+}
+
+/* ── Activities Section ── */
+.activitiesSection {
+  padding: 80px var(--px);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.activityGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background: #E8E8E8;
+  border: 1px solid #E8E8E8;
+}
+.activityCard {
+  background: #fff;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.15s;
+}
+.activityCard:hover { background: #FAFAFA; }
+.actCardImg {
+  aspect-ratio: 16/7;
+  background: linear-gradient(135deg, #1C4A1C22 0%, #1C4A1C08 100%);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.actCardImgInner {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(160deg, #1a3a1a 0%, #0d200d 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 14px 20px;
+}
+.actCardMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.actCardDate {
+  font-family: var(--sans);
+  font-size: 10px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.3px;
+}
+.actCardBadge {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.1);
+  padding: 2px 7px;
+}
+.actCardBody {
+  padding: 20px 22px 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.actCardTitle {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+  color: #111;
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+.actCardSummary {
+  font-size: 13px;
+  color: #888;
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.actCardLink {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.actCardArrow {
+  transition: transform 0.2s;
+}
+.activityCard:hover .actCardArrow { transform: translateX(3px); }
+
+/* ── Partner Band ── */
+.partnerBand {
+  border-top: 1px solid #E8E8E8;
+  padding: 28px var(--px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+.partnerLabel {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ccc;
+}
+.partnerSep { width: 1px; height: 16px; background: #E8E8E8; }
+.partnerName {
+  font-family: var(--serif);
+  font-size: 15px;
+  color: #555;
+  letter-spacing: -0.2px;
+}
+.partnerDesc { font-size: 12px; color: #bbb; }
+
+@media (max-width: 900px) {
+  .announcementBanner { padding: 11px var(--px-sm); }
+  .strip { padding: 13px var(--px-sm); }
+  .divider { margin: 0 var(--px-sm); }
+  .impactBand { padding: 48px var(--px-sm); }
+  .impactBandInner { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .impactStat { border-right: none; padding: 0; text-align: left; }
+  .missionSection { grid-template-columns: 1fr; gap: 48px; padding: 64px var(--px-sm); }
+  .productsSection { padding: 56px var(--px-sm); }
+  .productGrid { gap: 1px; }
+  .activitiesSection { padding: 56px var(--px-sm); }
+  .activityGrid { grid-template-columns: 1fr; }
+  .partnerBand { flex-wrap: wrap; padding: 28px var(--px-sm); gap: 16px; text-align: center; }
+}
+@media (max-width: 600px) {
+  .productGrid { grid-template-columns: 1fr; }
+  .impactBandInner { grid-template-columns: repeat(2, 1fr); }
+}

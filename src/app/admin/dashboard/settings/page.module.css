@@ -1,0 +1,6 @@
+.sectionNote {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-4);
+  margin-bottom: 14px;
+}

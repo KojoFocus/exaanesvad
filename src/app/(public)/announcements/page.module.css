@@ -1,0 +1,172 @@
+/* ── Page Header ── */
+.pageHead {
+  background: #fff;
+  border-bottom: 1px solid #E8E8E8;
+  padding: 80px 64px 56px;
+}
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--green);
+  flex-shrink: 0;
+}
+.h1 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 400;
+  color: #111;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.sub {
+  font-size: 15px;
+  color: #777;
+  line-height: 1.7;
+  max-width: 480px;
+}
+
+/* ── List layout ── */
+.inner {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 64px 80px;
+}
+
+/* ── Year group ── */
+.yearGroup { margin-top: 56px; }
+.yearLabel {
+  font-family: var(--serif);
+  font-size: clamp(48px, 5vw, 72px);
+  font-weight: 400;
+  color: #F0F0EC;
+  letter-spacing: -3px;
+  line-height: 1;
+  margin-bottom: -8px;
+  user-select: none;
+}
+
+/* ── Card ── */
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  text-decoration: none;
+  padding: 28px 0;
+  border-bottom: 1px solid #E8E8E8;
+  transition: background 0.15s;
+}
+.card:first-of-type { border-top: 1px solid #E8E8E8; }
+.card:hover .cardTitle { color: var(--green); }
+
+.cardDate {
+  flex-shrink: 0;
+  width: 72px;
+  text-align: right;
+}
+.cardDateDay {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 400;
+  color: #111;
+  letter-spacing: -1px;
+  line-height: 1;
+  display: block;
+}
+.cardDateMonth {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #bbb;
+  display: block;
+  margin-top: 4px;
+}
+
+.cardDivider {
+  flex-shrink: 0;
+  width: 1px;
+  background: #E8E8E8;
+  align-self: stretch;
+  margin: 4px 0;
+}
+
+.cardBody { flex: 1; min-width: 0; }
+.cardMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.cardCat {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.featuredBadge {
+  font-family: var(--sans);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #92400E;
+  background: #FEF3C7;
+  padding: 2px 7px;
+}
+.cardTitle {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+  color: #111;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  transition: color 0.15s;
+}
+.cardSummary {
+  font-size: 13px;
+  color: #888;
+  line-height: 1.7;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Empty ── */
+.empty {
+  padding: 80px 0;
+  text-align: center;
+  color: #bbb;
+  font-size: 13px;
+  font-family: var(--sans);
+}
+
+@media (max-width: 900px) {
+  .pageHead { padding: 56px var(--px-sm) 40px; }
+  .inner { padding: 0 var(--px-sm) 64px; }
+  .card { gap: 20px; }
+  .cardDate { width: 56px; }
+}
+@media (max-width: 600px) {
+  .card { flex-direction: column; gap: 12px; }
+  .cardDate { display: flex; align-items: baseline; gap: 6px; width: auto; text-align: left; }
+  .cardDivider { display: none; }
+}

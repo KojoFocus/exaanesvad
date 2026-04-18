@@ -1,0 +1,57 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+.title {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 600;
+  color: #111;
+  letter-spacing: -0.3px;
+}
+.sub {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: #999;
+  margin-top: 4px;
+}
+.tableCard {
+  background: #fff;
+  border: 1px solid #E8E8E8;
+  overflow: hidden;
+}
+.table { width: 100%; border-collapse: collapse; }
+.table th {
+  text-align: left;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #aaa;
+  padding: 10px 20px;
+  border-bottom: 1px solid #E8E8E8;
+  background: #FAFAFA;
+}
+.table td {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  padding: 13px 20px;
+  border-bottom: 1px solid #F0F0F0;
+  color: #333;
+  vertical-align: middle;
+}
+.table tr:last-child td { border-bottom: none; }
+.table tbody tr:hover td { background: #FAFAFA; }
+.productName { font-weight: 500; color: #111; }
+.outOfStock  { color: #E44; }
+.actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.empty {
+  text-align: center;
+  color: #bbb;
+  padding: 48px;
+  font-family: var(--sans);
+  font-size: 13px;
+}

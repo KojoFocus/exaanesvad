@@ -1,0 +1,69 @@
+:root {
+  /* Brand */
+  --green:        #1C4A1C;
+  --green-mid:    #2D6A2D;
+  --green-light:  #3D8B3D;
+  --green-pale:   #F0F7F0;
+  --green-wash:   #E8F4E8;
+  --gold:         #C9A84C;
+  --gold-light:   #E8D08A;
+  --gold-pale:    #FBF6E9;
+  --blue:         #1565D8;
+  --blue-wash:    #EBF2FD;
+
+  /* Surface */
+  --ink:          #0A0A0A;
+  --ink-2:        #3A3A3A;
+  --ink-3:        #6B6B6B;
+  --ink-4:        #9E9E9E;
+  --bg:           #FAFAF6;
+  --surface:      #FFFFFF;
+  --border:       #E8E5DF;
+  --border-mid:   #D0CCC4;
+
+  /* Status */
+  --s-g-bg: #E8F4E8; --s-g-tx: #1C4A1C;
+  --s-b-bg: #EBF2FD; --s-b-tx: #0C447C;
+  --s-w-bg: #FEF3C7; --s-w-tx: #92400E;
+  --s-r-bg: #FEE2E2; --s-r-tx: #991B1B;
+  --s-n-bg: #F4F3EF; --s-n-tx: #6B6B6B;
+
+  /* Legacy aliases */
+  --exa-green:        #1C4A1C;
+  --exa-green-light:  #3D8B3D;
+  --exa-green-dark:   #122E12;
+  --exa-green-deep:   #0A1E0A;
+  --exa-green-wash:   #E8F4E8;
+  --exa-green-pale:   #F0F7F0;
+  --ansvd-blue:       #1565D8;
+  --ansvd-blue-light: #2B7BE8;
+  --ansvd-blue-wash:  #EBF2FD;
+  --ansvd-blue-pale:  #F4F8FE;
+  --warm-white:       #FAFAF6;
+  --warm-gray:        #F2F1EC;
+  --border-strong:    #D0CCC4;
+  --text:             #0A0A0A;
+  --text-mid:         #3A3A3A;
+  --text-muted:       #6B6B6B;
+  --g:    #1C4A1C; --g-l: #E8F4E8; --g-d: #122E12;
+  --b:    #1565D8; --b-l: #EBF2FD;
+  --ink2: #3A3A3A; --ink3: #6B6B6B;
+  --bg:   #FAFAF6; --sur: #FFFFFF;
+  --bdr:  #E8E5DF; --bdr2: #D0CCC4;
+
+  --serif: 'Georgia', 'Times New Roman', serif;
+  --sans:  'Helvetica Neue', 'Arial', sans-serif;
+
+  --r:    4px;
+  --r-md: 6px;
+  --r-lg: 8px;
+  --nav-h: 60px;
+
+  /* ── Spacing system ── */
+  --px:     80px;   /* horizontal page padding — desktop */
+  --px-md:  48px;   /* tablet */
+  --px-sm:  24px;   /* mobile */
+  --py-xl:  96px;   /* section vertical — hero/page headers */
+  --py-lg:  80px;   /* section vertical — main content */
+  --py-md:  64px;   /* section vertical — secondary */
+}

@@ -1,0 +1,278 @@
+/* ── Hero ── */
+.heroWrap {
+  background: #fff;
+  border-bottom: 1px solid #E8E8E8;
+  padding: var(--py-xl) var(--px) var(--py-lg);
+}
+.heroInner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 80px;
+  align-items: start;
+}
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--green);
+  flex-shrink: 0;
+}
+.h1 {
+  font-family: var(--serif);
+  font-size: clamp(32px, 3.8vw, 52px);
+  font-weight: 400;
+  color: #111;
+  line-height: 1.12;
+  letter-spacing: -1.5px;
+  margin-bottom: 24px;
+}
+.h1 em { font-style: italic; color: var(--green); }
+.sub { font-size: 14.5px; color: #666; line-height: 1.85; max-width: 500px; }
+
+.aside {
+  background: #FAFAFA;
+  border: 1px solid #E8E8E8;
+  padding: 24px;
+}
+.asideTitle {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-bottom: 16px;
+}
+.partnerBlock {
+  padding: 14px;
+  border: 1px solid #E8E8E8;
+  background: #fff;
+  margin-bottom: 8px;
+}
+.partnerBlock:last-child { margin-bottom: 0; }
+.pLogoGreen { font-family: var(--serif); font-size: 14px; color: var(--green); margin-bottom: 4px; }
+.pLogoGold  { font-family: var(--serif); font-size: 14px; color: #8B6914; margin-bottom: 4px; }
+.pDesc { font-size: 11.5px; color: #aaa; line-height: 1.55; }
+
+/* ── Problem statement (dark band) ── */
+.problemBand {
+  background: #111;
+  padding: 80px var(--px);
+  position: relative;
+  overflow: hidden;
+}
+.problemImg {
+  position: absolute;
+  inset: 0;
+}
+.problemImgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.75) 50%, rgba(10,10,10,0.5) 100%);
+}
+.problemInner {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.problemLabel {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.problemLabel::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--green);
+  opacity: 0.6;
+}
+.problemHeadline {
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.5vw, 36px);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+}
+.problemHeadline em { font-style: italic; color: rgba(255,255,255,0.5); }
+.problemStats {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.problemStat {}
+.problemStatNum {
+  font-family: var(--serif);
+  font-size: clamp(36px, 3.5vw, 52px);
+  font-weight: 400;
+  color: var(--green);
+  letter-spacing: -1.5px;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.problemStatLbl {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.5;
+}
+
+/* ── Pillars section ── */
+.pillarsSection {
+  padding: 80px var(--px);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.secLabel {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.secLabel::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--green);
+}
+.secTitle {
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.5vw, 36px);
+  font-weight: 400;
+  color: #111;
+  letter-spacing: -0.5px;
+  margin-bottom: 48px;
+}
+
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #E8E8E8; border: 1px solid #E8E8E8; }
+.pillar  { background: #fff; padding: 36px 32px; transition: background 0.15s; }
+.pillar:hover { background: #FAFAFA; }
+.pillarNum {
+  font-family: var(--serif);
+  font-size: 36px;
+  color: var(--green);
+  opacity: 0.2;
+  line-height: 1;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+.pillarTitle { font-family: var(--sans); font-size: 13.5px; font-weight: 600; color: #111; margin-bottom: 10px; }
+.pillarBody  { font-size: 13px; color: #888; line-height: 1.8; }
+
+/* ── Pull quote ── */
+.quoteSection {
+  padding: 80px var(--px);
+  background: #F5F5F0;
+  border-top: 1px solid #E8E8E8;
+  border-bottom: 1px solid #E8E8E8;
+  text-align: center;
+}
+.quoteText {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.5vw, 34px);
+  font-weight: 400;
+  font-style: italic;
+  color: #333;
+  line-height: 1.5;
+  letter-spacing: -0.3px;
+  max-width: 720px;
+  margin: 0 auto 20px;
+}
+.quoteCite {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #bbb;
+}
+
+/* ── Partnership section ── */
+.partnerSection {
+  padding: 80px var(--px);
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.partnerLeft {}
+.partnerRight {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.partnerCard {
+  border: 1px solid #E8E8E8;
+  padding: 24px 28px;
+  background: #FAFAFA;
+}
+.partnerCardName {
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--green);
+  margin-bottom: 4px;
+}
+.partnerCardName.gold { color: #8B6914; }
+.partnerCardRole {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-bottom: 10px;
+}
+.partnerCardDesc {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .heroWrap { padding: 64px var(--px-sm) 48px; }
+  .heroInner { grid-template-columns: 1fr; gap: 40px; }
+  .problemBand { padding: 64px var(--px-sm); }
+  .problemInner { grid-template-columns: 1fr; gap: 40px; }
+  .pillarsSection { padding: 64px var(--px-sm); }
+  .pillars { grid-template-columns: 1fr; }
+  .quoteSection { padding: 64px var(--px-sm); }
+  .partnerSection { grid-template-columns: 1fr; gap: 40px; padding: 64px var(--px-sm); }
+}

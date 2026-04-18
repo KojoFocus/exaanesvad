@@ -1,0 +1,157 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ─── Catalogue ────────────────────────────────────────────
+
+model Category {
+  id        String    @id @default(cuid())
+  name      String
+  slug      String    @unique
+  products  Product[]
+  createdAt DateTime  @default(now())
+}
+
+model Product {
+  id               String      @id @default(cuid())
+  name             String
+  slug             String      @unique
+  description      String
+  shortDescription String
+  price            Float
+  stock            Int         @default(0)
+  categoryId       String
+  category         Category    @relation(fields: [categoryId], references: [id])
+  images           Json        @default("[]")  // ProductImage[]
+  featured         Boolean     @default(false)
+  published        Boolean     @default(false)
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  orderItems       OrderItem[]
+}
+
+// ─── Orders ───────────────────────────────────────────────
+
+model Order {
+  id            String      @id @default(cuid())
+  customerName  String
+  customerEmail String
+  customerPhone String
+  address       String
+  items         OrderItem[]
+  totalAmount   Float
+  status        OrderStatus @default(pending)
+  notes         String?
+  createdAt     DateTime    @default(now())
+}
+
+model OrderItem {
+  id          String  @id @default(cuid())
+  orderId     String
+  order       Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId   String
+  product     Product @relation(fields: [productId], references: [id])
+  productName String  // snapshot at time of order
+  quantity    Int
+  unitPrice   Float   // snapshot at time of order
+}
+
+// ─── Programme Content ────────────────────────────────────
+
+model Activity {
+  id            String   @id @default(cuid())
+  title         String
+  slug          String   @unique
+  summary       String
+  content       String   @db.Text
+  featuredImage String?
+  gallery       Json     @default("[]")  // string[]
+  videoUrl      String?
+  activityDate  DateTime
+  location      String
+  category      String   @default("Training")
+  published     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Announcement {
+  id        String   @id @default(cuid())
+  title     String
+  slug      String   @unique
+  content   String   @db.Text
+  summary   String
+  featured  Boolean  @default(false)
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─── Media ────────────────────────────────────────────────
+
+model GalleryItem {
+  id        String   @id @default(cuid())
+  image     String
+  caption   String?
+  category  String?
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model Video {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  thumbnail   String?
+  videoUrl    String?
+  embedUrl    String?
+  category    String?
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ─── Auth / Users ─────────────────────────────────────────
+
+model AdminUser {
+  id        String    @id @default(cuid())
+  name      String
+  email     String    @unique
+  password  String    // bcrypt hash
+  role      AdminRole @default(admin)
+  createdAt DateTime  @default(now())
+}
+
+// ─── Site Settings ────────────────────────────────────────
+
+model SiteSettings {
+  id          String @id @default("singleton")
+  siteName    String @default("EXA-ANESVAD")
+  tagline     String @default("Skills. Dignity. Community Transformation.")
+  email       String @default("")
+  phone       String @default("")
+  address     String @default("")
+  socialLinks Json   @default("{}")  // { facebook, instagram, twitter, youtube }
+  footerText  String @default("")
+}
+
+// ─── Enums ────────────────────────────────────────────────
+
+enum OrderStatus {
+  pending
+  confirmed
+  processing
+  delivered
+  cancelled
+}
+
+enum AdminRole {
+  admin
+  editor
+}

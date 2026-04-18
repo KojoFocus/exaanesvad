@@ -1,0 +1,216 @@
+/* ── Page Header ── */
+.pageHead {
+  background: #fff;
+  border-bottom: 1px solid #E8E8E8;
+  padding: 80px 64px 56px;
+}
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--green);
+  flex-shrink: 0;
+}
+.h1 {
+  font-family: var(--serif);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 400;
+  color: #111;
+  letter-spacing: -1.5px;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+.sub {
+  font-size: 15px;
+  color: #777;
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+/* ── Layout ── */
+.layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 60vh;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  border-right: 1px solid #E8E8E8;
+  padding: 40px 28px;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  align-self: start;
+}
+.sideSection { margin-bottom: 36px; }
+.sideLabel {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ccc;
+  margin-bottom: 14px;
+}
+.filterItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  padding: 8px 10px;
+  color: #666;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.15s;
+  margin-bottom: 2px;
+}
+.filterItem:hover { color: #111; background: #F5F5F0; }
+.filterActive { color: var(--green) !important; font-weight: 500; background: rgba(28, 74, 28, 0.04); }
+
+.impactNote {
+  background: #F5F5F0;
+  border-left: 2px solid var(--green);
+  padding: 14px 16px;
+  margin-top: 32px;
+}
+.impactNoteText {
+  font-size: 11.5px;
+  color: #666;
+  line-height: 1.6;
+}
+.impactNoteText strong { color: var(--green); font-weight: 600; }
+
+/* ── Main content ── */
+.main { padding: 40px 48px; background: #fff; }
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #E8E8E8;
+}
+.count {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: #bbb;
+  letter-spacing: 0.3px;
+}
+.sortRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: #bbb;
+}
+
+/* ── Grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: #E8E8E8;
+  border: 1px solid #E8E8E8;
+}
+
+/* ── Product card ── */
+.card {
+  background: #fff;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: background 0.15s;
+}
+.card:hover { background: #FAFAFA; }
+.card:hover .cardImgWrap { opacity: 0.88; }
+
+.cardImgWrap {
+  aspect-ratio: 1/1;
+  background: #F5F5F0;
+  position: relative;
+  overflow: hidden;
+  transition: opacity 0.35s;
+  flex-shrink: 0;
+}
+.cardImgPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #EEEEE8 0%, #E5E5DC 100%);
+}
+
+.cardBody { padding: 18px 20px 22px; }
+.cardCat {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-bottom: 6px;
+}
+.cardName {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #111;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cardPrice {
+  font-family: var(--serif);
+  font-size: 17px;
+  color: #111;
+  letter-spacing: -0.3px;
+}
+.cardTag {
+  font-family: var(--sans);
+  font-size: 9px;
+  color: var(--green);
+  opacity: 0.6;
+  letter-spacing: 0.2px;
+}
+
+/* ── Empty ── */
+.empty {
+  padding: 80px 0;
+  text-align: center;
+  color: #bbb;
+  font-size: 13px;
+  font-family: var(--sans);
+}
+
+@media (max-width: 1100px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  .pageHead { padding: 56px var(--px-sm) 40px; }
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { border-right: none; border-bottom: 1px solid #E8E8E8; padding: 32px var(--px-sm); position: static; }
+  .main { padding: 40px var(--px-sm); }
+}
+@media (max-width: 600px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
