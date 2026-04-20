@@ -38,10 +38,6 @@ export default function ShopHome({ featuredProducts, announcement }: HomeData) {
 
         <div className={styles.heroArrow}>↓</div>
 
-        <div className={styles.heroBottom}>
-          <Link href="/shop" className={styles.heroBottomLeft}>Our products</Link>
-          <Link href="/shop" className={styles.heroBottomRight}>View all →</Link>
-        </div>
       </section>
 
       {/* Mission strip */}
@@ -51,15 +47,14 @@ export default function ShopHome({ featuredProducts, announcement }: HomeData) {
             100% of proceeds fund vocational training for people living with NTDs,
             PWDs, and vulnerable women in Ghana.
           </p>
-          <Link href="/about" className={styles.missionStripLink}>Our mission →</Link>
         </div>
       </div>
 
       {/* Product list */}
       <div className={styles.listWrap}>
-        <div className={styles.listHead}>
-          <p className={styles.listLabel}>From the community</p>
-          <Link href="/shop" className={styles.listAll}>View all →</Link>
+        <div className={styles.heroBottom}>
+          <span className={styles.heroBottomLeft}>Our products</span>
+          <Link href="/shop" className={styles.heroBottomRight}>View all →</Link>
         </div>
 
         {featuredProducts.length === 0 ? (

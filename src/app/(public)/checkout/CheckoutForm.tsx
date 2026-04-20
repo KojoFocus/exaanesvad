@@ -34,29 +34,33 @@ export default function CheckoutForm() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      {error && <div className={styles.errorBanner}>{error}</div>}
+      {error && (
+        <div className={styles.errorBanner} role="alert" aria-live="assertive">
+          {error}
+        </div>
+      )}
 
       <div className={styles.section}>
         <h2 className={styles.secTitle}>Contact information</h2>
         <div className={styles.fg}>
-          <label className={styles.label}>Full name <span className={styles.req}>*</span></label>
-          <input name="customerName" required className={styles.input} placeholder="Kwame Mensah" />
+          <label htmlFor="checkout-customer-name" className={styles.label}>Full name <span className={styles.req}>*</span></label>
+          <input id="checkout-customer-name" name="customerName" required className={styles.input} placeholder="Kwame Mensah" />
         </div>
         <div className={styles.fg}>
-          <label className={styles.label}>Phone number <span className={styles.req}>*</span></label>
-          <input name="customerPhone" type="tel" required className={styles.input} placeholder="+233 XX XXX XXXX" />
+          <label htmlFor="checkout-customer-phone" className={styles.label}>Phone number <span className={styles.req}>*</span></label>
+          <input id="checkout-customer-phone" name="customerPhone" type="tel" required className={styles.input} placeholder="+233 XX XXX XXXX" />
         </div>
       </div>
 
       <div className={styles.section}>
         <h2 className={styles.secTitle}>Delivery address</h2>
         <div className={styles.fg}>
-          <label className={styles.label}>Full address <span className={styles.req}>*</span></label>
-          <textarea name="address" required className={styles.textarea} placeholder="Street, district, city, region…" />
+          <label htmlFor="checkout-address" className={styles.label}>Full address <span className={styles.req}>*</span></label>
+          <textarea id="checkout-address" name="address" required className={styles.textarea} placeholder="Street, district, city, region…" />
         </div>
         <div className={styles.fg}>
-          <label className={styles.label}>Order notes <span className={styles.opt}>(optional)</span></label>
-          <textarea name="notes" className={styles.textarea} placeholder="Any special delivery instructions?" />
+          <label htmlFor="checkout-notes" className={styles.label}>Order notes <span className={styles.opt}>(optional)</span></label>
+          <textarea id="checkout-notes" name="notes" className={styles.textarea} placeholder="Any special delivery instructions?" />
         </div>
       </div>
 
@@ -66,6 +70,10 @@ export default function CheckoutForm() {
 
       <p className={styles.terms}>
         By placing this order you agree to our terms. We will contact you to confirm delivery details.
+      </p>
+
+      <p className={styles.srLive} aria-live="polite" aria-atomic="true">
+        {isPending ? 'Placing order.' : ''}
       </p>
     </form>
   );

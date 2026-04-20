@@ -294,6 +294,7 @@
   line-height: 1.65;
   margin-bottom: 14px;
   display: -webkit-box;
+  line-clamp: 2;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -327,7 +328,7 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 24px;
 }
 .missionStripText {
@@ -337,17 +338,6 @@
   line-height: 1.65;
   max-width: 560px;
 }
-.missionStripLink {
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--green);
-  text-decoration: none;
-  white-space: nowrap;
-  border-bottom: 1px solid rgba(28,74,28,0.3);
-  padding-bottom: 2px;
-}
-.missionStripLink:hover { opacity: 0.7; }
 
 .empty {
   padding: 60px 0;

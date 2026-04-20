@@ -73,9 +73,6 @@
 .impactNoteText { font-size: 11.5px; color: var(--ink-4); line-height: 1.65; }
 .impactNoteText strong { color: var(--green); font-weight: 600; }
 
-/* ── Main ── */
-.main { }
-
 .toolbar {
   padding: 20px var(--px);
   border-bottom: 1px solid var(--border);
@@ -114,7 +111,6 @@
   background: linear-gradient(135deg, var(--border) 0%, var(--warm-gray) 100%);
 }
 
-.cardBody { }
 .cardRow {
   display: flex;
   justify-content: space-between;
@@ -151,6 +147,7 @@
   line-height: 1.7;
   margin-bottom: 16px;
   display: -webkit-box;
+  line-clamp: 2;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;

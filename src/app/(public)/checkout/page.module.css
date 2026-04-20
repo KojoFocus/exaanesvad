@@ -69,12 +69,11 @@
 .input, .textarea {
   width: 100%;
   font-family: var(--sans);
-  font-size: 13.5px;
+  font-size: 14px;
   padding: 10px 12px;
   border: 1px solid var(--border);
   background: var(--bg);
   color: var(--ink);
-  outline: none;
   transition: border-color 0.15s, box-shadow 0.15s;
   border-radius: 0;
 }
@@ -207,8 +206,17 @@
 }
 .impactIcon { color: var(--green); opacity: 0.5; flex-shrink: 0; font-size: 10px; padding-top: 2px; }
 
-.summaryCol {}
-.formCol {}
+.srLive {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 @media (max-width: 900px) {
   .page { padding: 40px var(--px-sm) 64px; }

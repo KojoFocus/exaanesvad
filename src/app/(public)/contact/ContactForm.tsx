@@ -50,32 +50,40 @@ export default function ContactForm() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      {error && <div className={styles.errorBanner}>{error}</div>}
+      {error && (
+        <div className={styles.errorBanner} role="alert" aria-live="assertive">
+          {error}
+        </div>
+      )}
 
       <div className={styles.row2}>
         <div className={styles.fg}>
-          <label className={styles.label}>Name <span className={styles.req}>*</span></label>
-          <input name="name" required className={styles.input} placeholder="Your full name" />
+          <label htmlFor="contact-name" className={styles.label}>Name <span className={styles.req}>*</span></label>
+          <input id="contact-name" name="name" required className={styles.input} placeholder="Your full name" />
         </div>
         <div className={styles.fg}>
-          <label className={styles.label}>Email <span className={styles.req}>*</span></label>
-          <input name="email" type="email" required className={styles.input} placeholder="you@example.com" />
+          <label htmlFor="contact-email" className={styles.label}>Email <span className={styles.req}>*</span></label>
+          <input id="contact-email" name="email" type="email" required className={styles.input} placeholder="you@example.com" />
         </div>
       </div>
 
       <div className={styles.fg}>
-        <label className={styles.label}>Subject</label>
-        <input name="subject" className={styles.input} placeholder="e.g. Product inquiry, Partnership, Programme info…" />
+        <label htmlFor="contact-subject" className={styles.label}>Subject</label>
+        <input id="contact-subject" name="subject" className={styles.input} placeholder="e.g. Product inquiry, Partnership, Programme info…" />
       </div>
 
       <div className={styles.fg}>
-        <label className={styles.label}>Message <span className={styles.req}>*</span></label>
-        <textarea name="message" required className={styles.textarea} placeholder="How can we help?" />
+        <label htmlFor="contact-message" className={styles.label}>Message <span className={styles.req}>*</span></label>
+        <textarea id="contact-message" name="message" required className={styles.textarea} placeholder="How can we help?" />
       </div>
 
       <button type="submit" className={styles.submitBtn} disabled={isPending}>
         {isPending ? 'Sending…' : 'Send message'}
       </button>
+
+      <p className={styles.srLive} aria-live="polite" aria-atomic="true">
+        {isPending ? 'Sending message.' : ''}
+      </p>
     </form>
   );
 }

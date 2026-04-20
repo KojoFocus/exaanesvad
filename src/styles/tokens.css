@@ -14,12 +14,13 @@
   /* Surface */
   --ink:          #2C2C2C;
   --ink-2:        #3A3A3A;
-  --ink-3:        #6B6B6B;
-  --ink-4:        #9E9E9E;
+  --ink-3:        #595959;
+  --ink-4:        #767676;
   --bg:           #FAFAF6;
   --surface:      #FFFFFF;
   --border:       #E8E5DF;
   --border-mid:   #D0CCC4;
+  --focus-ring:   #1565D8;
 
   /* Status */
   --s-g-bg: #E4F5DE; --s-g-tx: #2D6B1E;

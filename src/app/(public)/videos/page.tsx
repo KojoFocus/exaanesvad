@@ -1,16 +1,31 @@
 import { prisma } from '@/lib/prisma';
+import Link from 'next/link';
 import styles from './page.module.css';
 
 export const metadata = { title: 'Videos' };
 export const dynamic = 'force-dynamic';
 
-export default async function VideosPage() {
+type VideosPageProps = {
+  searchParams: Promise<{ category?: string }>;
+};
+
+export default async function VideosPage({ searchParams }: VideosPageProps) {
+  const { category } = await searchParams;
+  const activeCategory = category ?? null;
+
   const videos = await prisma.video.findMany({
-    where: { published: true },
+    where: {
+      published: true,
+      ...(activeCategory ? { category: activeCategory } : {}),
+    },
     orderBy: { createdAt: 'desc' },
   });
 
-  const categories = Array.from(new Set(videos.map(v => v.category).filter((c): c is string => !!c)));
+  const allCategories = await prisma.video.findMany({
+    where: { published: true, category: { not: null } },
+    select: { category: true },
+  });
+  const categories = Array.from(new Set(allCategories.map(v => v.category).filter((c): c is string => !!c)));
 
   return (
     <>
@@ -21,11 +36,22 @@ export default async function VideosPage() {
       </div>
 
       <div className={styles.inner}>
-        {categories.length > 1 && (
+        {categories.length > 0 && (
           <div className={styles.chipRow}>
-            <span className={`${styles.chip} ${styles.chipActive}`}>All</span>
+            <Link
+              href="/videos"
+              className={`${styles.chip} ${!activeCategory ? styles.chipActive : styles.chipInactive}`}
+            >
+              All
+            </Link>
             {categories.map(c => (
-              <span key={c} className={styles.chip}>{c}</span>
+              <Link
+                key={c}
+                href={`/videos?category=${encodeURIComponent(c)}`}
+                className={`${styles.chip} ${activeCategory === c ? styles.chipActive : styles.chipInactive}`}
+              >
+                {c}
+              </Link>
             ))}
           </div>
         )}

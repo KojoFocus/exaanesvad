@@ -21,6 +21,16 @@ a { color: inherit; text-decoration: none; }
 img { max-width: 100%; height: auto; display: block; }
 button { font-family: var(--sans); }
 
+/* ── Global focus visibility ───────────────────────────── */
+:where(a, button, input, textarea, select, [role='button'], [tabindex]):focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+:where(a, button, input, textarea, select, [role='button'], [tabindex]):focus:not(:focus-visible) {
+  outline: none;
+}
+
 /* ── Buttons ──────────────────────────────────────────── */
 .btn {
   display: inline-flex;
