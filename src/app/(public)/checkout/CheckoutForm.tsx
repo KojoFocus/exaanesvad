@@ -3,7 +3,7 @@
 import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { useCart } from '@/contexts/CartContext';
-import { createOrder } from './actions';
+import { createOrderWithPayment } from './actions';
 import styles from './page.module.css';
 
 export default function CheckoutForm() {
@@ -18,15 +18,15 @@ export default function CheckoutForm() {
     const fd = new FormData(e.currentTarget);
 
     startTransition(async () => {
-      const result = await createOrder(
+      const result = await createOrderWithPayment(
         items.map(i => ({ id: i.id, name: i.name, price: i.price, quantity: i.quantity })),
         fd
       );
 
-      if (result.success) {
-        clearCart();
-        router.push(`/checkout/confirmation?order=${result.orderId}`);
-      } else {
+      if (result.success && result.authorizationUrl) {
+        // Redirect to Paystack payment page
+        window.location.href = result.authorizationUrl;
+      } else if (!result.success) {
         setError(result.error);
       }
     });
@@ -41,39 +41,75 @@ export default function CheckoutForm() {
       )}
 
       <div className={styles.section}>
-        <h2 className={styles.secTitle}>Contact information</h2>
-        <div className={styles.fg}>
-          <label htmlFor="checkout-customer-name" className={styles.label}>Full name <span className={styles.req}>*</span></label>
-          <input id="checkout-customer-name" name="customerName" required className={styles.input} placeholder="Kwame Mensah" />
+        <h2 className={styles.secTitle}>Customer details</h2>
+        <div className={styles.row2}>
+          <div className={styles.fg}>
+            <label htmlFor="checkout-customer-name" className={styles.label}>Full name <span className={styles.req}>*</span></label>
+            <input 
+              id="checkout-customer-name" 
+              name="customerName" 
+              required 
+              className={styles.input} 
+              placeholder="e.g., Kwame Mensah" 
+            />
+          </div>
+          <div className={styles.fg}>
+            <label htmlFor="checkout-customer-phone" className={styles.label}>Phone number <span className={styles.req}>*</span></label>
+            <input 
+              id="checkout-customer-phone" 
+              name="customerPhone" 
+              type="tel" 
+              required 
+              className={styles.input} 
+              placeholder="+233 XX XXX XXXX" 
+            />
+          </div>
         </div>
         <div className={styles.fg}>
-          <label htmlFor="checkout-customer-phone" className={styles.label}>Phone number <span className={styles.req}>*</span></label>
-          <input id="checkout-customer-phone" name="customerPhone" type="tel" required className={styles.input} placeholder="+233 XX XXX XXXX" />
+          <label htmlFor="checkout-customer-email" className={styles.label}>Email address <span className={styles.opt}>(optional)</span></label>
+          <input 
+            id="checkout-customer-email" 
+            name="customerEmail" 
+            type="email" 
+            className={styles.input} 
+            placeholder="your@email.com" 
+          />
         </div>
       </div>
 
       <div className={styles.section}>
-        <h2 className={styles.secTitle}>Delivery address</h2>
+        <h2 className={styles.secTitle}>Delivery information</h2>
         <div className={styles.fg}>
-          <label htmlFor="checkout-address" className={styles.label}>Full address <span className={styles.req}>*</span></label>
-          <textarea id="checkout-address" name="address" required className={styles.textarea} placeholder="Street, district, city, region…" />
+          <label htmlFor="checkout-address" className={styles.label}>Delivery address <span className={styles.req}>*</span></label>
+          <textarea 
+            id="checkout-address" 
+            name="address" 
+            required 
+            className={styles.textarea} 
+            placeholder="House number, street, district, city, region" 
+          />
         </div>
         <div className={styles.fg}>
-          <label htmlFor="checkout-notes" className={styles.label}>Order notes <span className={styles.opt}>(optional)</span></label>
-          <textarea id="checkout-notes" name="notes" className={styles.textarea} placeholder="Any special delivery instructions?" />
+          <label htmlFor="checkout-notes" className={styles.label}>Special instructions <span className={styles.opt}>(optional)</span></label>
+          <textarea 
+            id="checkout-notes" 
+            name="notes" 
+            className={styles.textarea} 
+            placeholder="Delivery time preferences, contact person, etc." 
+          />
         </div>
       </div>
 
       <button type="submit" className={styles.submitBtn} disabled={isPending || items.length === 0}>
-        {isPending ? 'Placing order…' : `Place order · GHS ${total.toLocaleString()}`}
+        {isPending ? 'Processing payment…' : `Complete order · GHS ${total.toLocaleString()}`}
       </button>
 
       <p className={styles.terms}>
-        By placing this order you agree to our terms. We will contact you to confirm delivery details.
+        Your order will be processed securely. After clicking "Complete order", you'll be redirected to our payment partner to finalize the transaction.
       </p>
 
       <p className={styles.srLive} aria-live="polite" aria-atomic="true">
-        {isPending ? 'Placing order.' : ''}
+        {isPending ? 'Processing payment.' : ''}
       </p>
     </form>
   );

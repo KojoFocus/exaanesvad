@@ -47,6 +47,8 @@ model Order {
   items         OrderItem[]
   totalAmount   Float
   status        OrderStatus @default(pending)
+  paymentStatus PaymentStatus @default(pending)
+  paymentReference String?
   notes         String?
   createdAt     DateTime    @default(now())
 }
@@ -148,6 +150,13 @@ enum OrderStatus {
   confirmed
   processing
   delivered
+  cancelled
+}
+
+enum PaymentStatus {
+  pending
+  paid
+  failed
   cancelled
 }
 
