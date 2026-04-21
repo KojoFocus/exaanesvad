@@ -4,8 +4,6 @@ import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
 import { initializePayment } from '@/lib/paystack';
 import { sendOrderNotifications } from '@/lib/notifications';
-import { env } from 'process';
-
 // Enhanced schema with stricter validation
 const OrderSchema = z.object({
   customerName:  z.string().min(2).max(100).regex(/^[a-zA-Z\s'-]+$/, 'Name contains invalid characters'),
@@ -14,9 +12,6 @@ const OrderSchema = z.object({
   address:       z.string().min(5).max(500),
   notes:         z.string().max(1000).optional(),
 });
-
-// Test mode helper
-const isTestMode = env.PAYSTACK_TEST_MODE === 'true';
 
 interface CartItemInput {
   id: string;
@@ -76,9 +71,12 @@ export async function createOrderWithPayment(
 
     if (!cartItems.length) return { success: false, error: 'Cart is empty' };
 
+    // Test mode helper — read at call time so env vars are available
+    const isTestMode = process.env.PAYSTACK_TEST_MODE === 'true';
+
     const total = cartItems.reduce((sum, i) => sum + i.price * i.quantity, 0);
     const reference = `EXA-${Date.now()}-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
-    const baseUrl = env.NEXTAUTH_URL || (process.env.NODE_ENV === 'production' ? 'https://yourdomain.com' : 'http://localhost:3003');
+    const baseUrl = process.env.NEXTAUTH_URL || (process.env.NODE_ENV === 'production' ? 'https://yourdomain.com' : 'http://localhost:3003');
     const callbackUrl = `${baseUrl}/checkout/confirmation?order=reference&ref=${reference}`;
 
     // Create order with pending payment

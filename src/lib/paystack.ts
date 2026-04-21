@@ -1,12 +1,4 @@
-import { env } from 'process';
-
-const PAYSTACK_SECRET_KEY = env.PAYSTACK_SECRET_KEY;
 const PAYSTACK_BASE_URL = 'https://api.paystack.co';
-
-// Validate that secret key is configured
-if (!PAYSTACK_SECRET_KEY) {
-  console.warn('⚠️  PAYSTACK_SECRET_KEY is not configured. Payment functionality will be disabled.');
-}
 
 export interface InitializePaymentData {
   email: string;
@@ -49,6 +41,7 @@ export interface VerifyTransactionResponse {
 }
 
 export async function initializePayment(data: InitializePaymentData): Promise<{ success: boolean; authorizationUrl?: string; error?: string }> {
+  const PAYSTACK_SECRET_KEY = process.env.PAYSTACK_SECRET_KEY;
   if (!PAYSTACK_SECRET_KEY) {
     console.error('Paystack secret key not configured');
     return { success: false, error: 'Payment system not configured' };
@@ -109,6 +102,7 @@ export async function initializePayment(data: InitializePaymentData): Promise<{ 
 }
 
 export async function verifyTransaction(reference: string): Promise<{ success: boolean; data?: VerifyTransactionResponse; error?: string }> {
+  const PAYSTACK_SECRET_KEY = process.env.PAYSTACK_SECRET_KEY;
   if (!PAYSTACK_SECRET_KEY) {
     console.error('Paystack secret key not configured');
     return { success: false, error: 'Payment system not configured' };
