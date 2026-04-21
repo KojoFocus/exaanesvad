@@ -1,0 +1,58 @@
+{
+  "id": "20250421152400_add_notification_settings",
+  "project": "prisma",
+  "provider": "postgresql",
+  "steps": [
+    {
+      "type": "AlterTable",
+      "table": "SiteSettings",
+      "changes": [
+        {
+          "type": "AddColumn",
+          "column": {
+            "name": "enableEmailNotification",
+            "type": "Boolean",
+            "nullable": false,
+            "default": true
+          }
+        },
+        {
+          "type": "AddColumn",
+          "column": {
+            "name": "enableSmsNotification",
+            "type": "Boolean",
+            "nullable": false,
+            "default": true
+          }
+        },
+        {
+          "type": "AddColumn",
+          "column": {
+            "name": "enableWhatsAppNotification",
+            "type": "Boolean",
+            "nullable": false,
+            "default": true
+          }
+        },
+        {
+          "type": "AddColumn",
+          "column": {
+            "name": "notificationEmails",
+            "type": "Json",
+            "nullable": false,
+            "default": "[]"
+          }
+        },
+        {
+          "type": "AddColumn",
+          "column": {
+            "name": "notificationPhones",
+            "type": "Json",
+            "nullable": false,
+            "default": "[]"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -141,6 +141,13 @@ model SiteSettings {
   address     String @default("")
   socialLinks Json   @default("{}")  // { facebook, instagram, twitter, youtube }
   footerText  String @default("")
+  
+  // Notification settings
+  notificationPhones Json @default("[]")  // string[] - Phone numbers to receive order notifications
+  notificationEmails Json @default("[]")  // string[] - Email addresses to receive order notifications
+  enableSmsNotification Boolean @default(true)
+  enableEmailNotification Boolean @default(true)
+  enableWhatsAppNotification Boolean @default(true)
 }
 
 // ─── Enums ────────────────────────────────────────────────

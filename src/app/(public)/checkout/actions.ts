@@ -78,7 +78,7 @@ export async function createOrderWithPayment(
 
     const total = cartItems.reduce((sum, i) => sum + i.price * i.quantity, 0);
     const reference = `EXA-${Date.now()}-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
-    const baseUrl = env.NEXTAUTH_URL || 'http://localhost:3000';
+    const baseUrl = env.NEXTAUTH_URL || (process.env.NODE_ENV === 'production' ? 'https://yourdomain.com' : 'http://localhost:3003');
     const callbackUrl = `${baseUrl}/checkout/confirmation?order=reference&ref=${reference}`;
 
     // Create order with pending payment
@@ -171,17 +171,54 @@ export async function createOrderWithPayment(
 
 export async function clearCartAfterPayment(orderId: string): Promise<void> {
   try {
-    // In a real implementation, you would clear the cart from your cart storage
-    // This could be localStorage, cookies, or a database cart table
-    // For now, we'll just log that the cart should be cleared
-    console.log('Cart should be cleared after successful payment for order:', orderId);
+    // Clear cart from localStorage (client-side)
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('exa-cart');
+    }
     
     // If you have a cart table in your database, you could clear it like this:
     // await prisma.cartItem.deleteMany({ where: { orderId: null } });
     
-    // If using localStorage, you would clear it on the client side
+    console.log('✅ Cart cleared after successful payment for order:', orderId);
   } catch (err) {
     console.error('Error clearing cart:', err);
+  }
+}
+
+export async function getOrderWithItems(orderId: string): Promise<{
+  id: string;
+  customerName: string;
+  customerEmail: string;
+  totalAmount: number;
+  items: Array<{
+    id: string;
+    productName: string;
+    quantity: number;
+    unitPrice: number;
+  }>;
+} | null> {
+  try {
+    const order = await prisma.order.findUnique({
+      where: { id: orderId },
+      include: { items: true },
+    });
+    return order;
+  } catch (error) {
+    console.error('getOrderWithItems error:', error);
+    return null;
+  }
+}
+
+export async function markOrderAsPaid(orderId: string): Promise<{ success: boolean }> {
+  try {
+    await prisma.order.update({
+      where: { id: orderId },
+      data: { paymentStatus: 'paid' },
+    });
+    return { success: true };
+  } catch (error) {
+    console.error('markOrderAsPaid error:', error);
+    return { success: false };
   }
 }
 

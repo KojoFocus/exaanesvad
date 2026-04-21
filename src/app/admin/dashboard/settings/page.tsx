@@ -9,8 +9,19 @@ export default async function SettingsPage() {
   const settings = await prisma.siteSettings.findUnique({ where: { id: 'singleton' } });
 
   let social: Record<string, string> = {};
+  let notificationPhones: string[] = [];
+  let notificationEmails: string[] = [];
+  
   try {
     social = settings?.socialLinks ? JSON.parse(settings.socialLinks as string) : {};
+  } catch {}
+  
+  try {
+    notificationPhones = settings?.notificationPhones ? JSON.parse(settings.notificationPhones as string) : [];
+  } catch {}
+  
+  try {
+    notificationEmails = settings?.notificationEmails ? JSON.parse(settings.notificationEmails as string) : [];
   } catch {}
 
   return (
@@ -59,6 +70,66 @@ export default async function SettingsPage() {
               <label className={styles.label}>Address</label>
               <input name="address" className={styles.input} defaultValue={settings?.address ?? ''} placeholder="Accra, Ghana" />
             </div>
+          </div>
+        </div>
+
+        <div className={styles.section}>
+          <h2 className={styles.secTitle}>Order Notification Settings</h2>
+          <p className={pageStyles.sectionNote}>Configure who receives notifications when a new order is placed.</p>
+
+          <div className={styles.fg}>
+            <label className={styles.label}>Phone Numbers (comma-separated)</label>
+            <input 
+              name="notificationPhones" 
+              className={styles.input} 
+              defaultValue={notificationPhones.join(', ')} 
+              placeholder="+233540484052, +233246114671" 
+            />
+            <p className={pageStyles.helpText}>Enter phone numbers that should receive SMS notifications for new orders.</p>
+          </div>
+
+          <div className={styles.fg}>
+            <label className={styles.label}>Email Addresses (comma-separated)</label>
+            <input 
+              name="notificationEmails" 
+              className={styles.input} 
+              defaultValue={notificationEmails.join(', ')} 
+              placeholder="exaanesvad@gmail.com, admin@exa-anesvad.org" 
+            />
+            <p className={pageStyles.helpText}>Enter email addresses that should receive email notifications for new orders.</p>
+          </div>
+
+          <div className={styles.fg}>
+            <label className={styles.checkboxLabel}>
+              <input 
+                type="checkbox" 
+                name="enableSmsNotification" 
+                defaultChecked={settings?.enableSmsNotification !== false} 
+              />
+              <span>Enable SMS Notifications</span>
+            </label>
+          </div>
+
+          <div className={styles.fg}>
+            <label className={styles.checkboxLabel}>
+              <input 
+                type="checkbox" 
+                name="enableEmailNotification" 
+                defaultChecked={settings?.enableEmailNotification !== false} 
+              />
+              <span>Enable Email Notifications</span>
+            </label>
+          </div>
+
+          <div className={styles.fg}>
+            <label className={styles.checkboxLabel}>
+              <input 
+                type="checkbox" 
+                name="enableWhatsAppNotification" 
+                defaultChecked={settings?.enableWhatsAppNotification !== false} 
+              />
+              <span>Enable WhatsApp Notifications</span>
+            </label>
           </div>
         </div>
 

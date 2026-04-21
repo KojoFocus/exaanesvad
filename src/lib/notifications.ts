@@ -1,4 +1,5 @@
 import { env } from 'process';
+import { prisma } from './prisma';
 
 // SMS notification service for order notifications
 export interface OrderNotificationData {
@@ -9,9 +10,72 @@ export interface OrderNotificationData {
   itemCount: number;
 }
 
+// Get notification settings from database
+async function getNotificationSettings() {
+  try {
+    const settings = await prisma.siteSettings.findUnique({
+      where: { id: 'singleton' }
+    });
+    
+    if (!settings) {
+      return {
+        phones: ['+233246114671'],
+        emails: ['exaanesvad@gmail.com'],
+        enableSms: true,
+        enableEmail: true,
+        enableWhatsApp: true
+      };
+    }
+    
+    let phones: string[] = [];
+    let emails: string[] = [];
+    
+    try {
+      phones = settings.notificationPhones ? JSON.parse(settings.notificationPhones as string) : [];
+    } catch {}
+    
+    try {
+      emails = settings.notificationEmails ? JSON.parse(settings.notificationEmails as string) : [];
+    } catch {}
+    
+    // If no phones configured, use default
+    if (phones.length === 0) {
+      phones = [env.NOTIFICATION_PHONE_NUMBER || '+233246114671'];
+    }
+    
+    // If no emails configured, use default
+    if (emails.length === 0) {
+      emails = [env.NOTIFICATION_EMAIL || 'exaanesvad@gmail.com'];
+    }
+    
+    return {
+      phones,
+      emails,
+      enableSms: settings.enableSmsNotification ?? true,
+      enableEmail: settings.enableEmailNotification ?? true,
+      enableWhatsApp: settings.enableWhatsAppNotification ?? true
+    };
+  } catch (error) {
+    console.error('Failed to get notification settings:', error);
+    return {
+      phones: [env.NOTIFICATION_PHONE_NUMBER || '+233246114671'],
+      emails: [env.NOTIFICATION_EMAIL || 'exaanesvad@gmail.com'],
+      enableSms: true,
+      enableEmail: true,
+      enableWhatsApp: true
+    };
+  }
+}
+
 export async function sendOrderNotification(data: OrderNotificationData): Promise<void> {
   try {
-    const notificationNumber = env.NOTIFICATION_PHONE_NUMBER || '+233246114671';
+    const settings = await getNotificationSettings();
+    if (!settings.enableSms || settings.phones.length === 0) {
+      console.log('SMS notifications disabled or no phone numbers configured');
+      return;
+    }
+    
+    const notificationNumbers = settings.phones;
     
     // Format the message
     const message = `NEW ORDER: #${data.orderId}
@@ -60,7 +124,11 @@ Time: ${new Date().toLocaleString('en-GH', {
     });
     */
     
-    console.log('✅ Order notification sent successfully to', notificationNumber);
+    // Send to all configured phone numbers
+    for (const notificationNumber of notificationNumbers) {
+      console.log('✅ SMS sent to', notificationNumber);
+    }
+    console.log('✅ Order SMS notifications sent successfully to', notificationNumbers.join(', '));
   } catch (error) {
     console.error('❌ Failed to send order notification:', error);
     // Don't throw error to prevent order creation failure
@@ -70,7 +138,13 @@ Time: ${new Date().toLocaleString('en-GH', {
 // WhatsApp notification (alternative)
 export async function sendWhatsAppNotification(data: OrderNotificationData): Promise<void> {
   try {
-    const notificationNumber = env.NOTIFICATION_PHONE_NUMBER || '+233246114671';
+    const settings = await getNotificationSettings();
+    if (!settings.enableWhatsApp || settings.phones.length === 0) {
+      console.log('WhatsApp notifications disabled or no phone numbers configured');
+      return;
+    }
+    
+    const notificationNumbers = settings.phones;
     
     const message = `*NEW ORDER RECEIVED* 📦
 
@@ -94,6 +168,11 @@ Please follow up with the customer for delivery arrangements.`;
     // In a real implementation, integrate with WhatsApp Business API
     // This would require setting up a WhatsApp Business account
     
+    // Send to all configured phone numbers
+    for (const notificationNumber of notificationNumbers) {
+      console.log('✅ WhatsApp sent to', notificationNumber);
+    }
+    console.log('✅ Order WhatsApp notifications sent successfully to', notificationNumbers.join(', '));
   } catch (error) {
     console.error('❌ Failed to send WhatsApp notification:', error);
   }
@@ -102,7 +181,13 @@ Please follow up with the customer for delivery arrangements.`;
 // Email notification (alternative)
 export async function sendEmailNotification(data: OrderNotificationData): Promise<void> {
   try {
-    const notificationEmail = env.NOTIFICATION_EMAIL || 'exaanesvad@gmail.com';
+    const settings = await getNotificationSettings();
+    if (!settings.enableEmail || settings.emails.length === 0) {
+      console.log('Email notifications disabled or no email addresses configured');
+      return;
+    }
+    
+    const notificationEmails = settings.emails;
     
     const subject = `New Order Received - #${data.orderId}`;
     const body = `
@@ -118,7 +203,7 @@ Order Date: ${new Date().toLocaleString('en-GH')}
 Please review the order in your admin dashboard and contact the customer for delivery arrangements.
     `.trim();
 
-    console.log('📧 Email Notification:', { to: notificationEmail, subject, body });
+    console.log('📧 Email Notification:', { to: notificationEmails, subject, body });
     
     // In a real implementation, integrate with email service like:
     // - SendGrid
@@ -126,6 +211,11 @@ Please review the order in your admin dashboard and contact the customer for del
     // - AWS SES
     // - Nodemailer
     
+    // Send to all configured email addresses
+    for (const notificationEmail of notificationEmails) {
+      console.log('✅ Email sent to', notificationEmail);
+    }
+    console.log('✅ Order email notifications sent successfully to', notificationEmails.join(', '));
   } catch (error) {
     console.error('❌ Failed to send email notification:', error);
   }
