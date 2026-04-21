@@ -31,8 +31,8 @@ export default function ShopHome({ featuredProducts, announcement }: HomeData) {
           </div>
 
           <div className={styles.heroCtas}>
-            <Link href="/shop" className={styles.ctaPrimary}>Shop Now</Link>
-            <Link href="/about" className={styles.ctaSecondary}>Our Mission</Link>
+            <Link href="/shop" className={styles.ctaPrimary} prefetch={false}>Shop Now</Link>
+            <Link href="/about" className={styles.ctaSecondary} prefetch={false}>Our Mission</Link>
           </div>
         </div>
 
@@ -54,7 +54,7 @@ export default function ShopHome({ featuredProducts, announcement }: HomeData) {
       <div className={styles.listWrap}>
         <div className={styles.heroBottom}>
           <span className={styles.heroBottomLeft}>Our products</span>
-          <Link href="/shop" className={styles.heroBottomRight}>View all →</Link>
+          <Link href="/shop" className={styles.heroBottomRight} prefetch={false}>View all →</Link>
         </div>
 
         {featuredProducts.length === 0 ? (
@@ -64,7 +64,7 @@ export default function ShopHome({ featuredProducts, announcement }: HomeData) {
             {featuredProducts.map((p, i) => {
               const imgs: string[] = Array.isArray(p.images) ? p.images as string[] : [];
               return (
-                <Link key={p.id} href={`/shop/${p.slug}`} className={styles.item}>
+                <Link key={p.id} href={`/shop/${p.slug}`} className={styles.item} prefetch={false}>
                   <div className={styles.itemImg}>
                     {imgs[0]
                       ? <Image src={imgs[0]} alt={p.name} fill style={{ objectFit: 'cover' }} />

@@ -39,7 +39,7 @@ export default function Hero() {
           </p>
           <div className={styles.ctas}>
             <button onClick={goShop} className={styles.ctaPrimary}>Shop &amp; support</button>
-            <Link href="/about" className={styles.ctaGhost}>About the programme →</Link>
+            <Link href="/about" className={styles.ctaGhost} prefetch={false}>About the programme →</Link>
           </div>
         </div>
 

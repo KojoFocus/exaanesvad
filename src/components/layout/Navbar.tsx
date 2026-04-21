@@ -39,7 +39,7 @@ export default function Navbar() {
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
-        <Link href="/" className={styles.logo}>
+        <Link href="/" className={styles.logo} prefetch={false}>
           {logoLoaded ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -61,6 +61,7 @@ export default function Navbar() {
             <li key={href}>
               <Link
                 href={href}
+                prefetch={false}
                 className={`${styles.link} ${path.startsWith(href) ? styles.active : ''}`}
               >
                 {label}
@@ -84,7 +85,7 @@ export default function Navbar() {
               Impact
             </button>
           </div>
-          <Link href="/cart" className={styles.cartBtn}>
+          <Link href="/cart" className={styles.cartBtn} prefetch={false}>
             Cart
             {count > 0 && <span className={styles.cartBadge}>{count}</span>}
           </Link>

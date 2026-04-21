@@ -11,18 +11,18 @@ export default function Footer() {
         </div>
 
         <nav className={styles.links}>
-          <Link href="/shop">Shop</Link>
-          <Link href="/activities">Activities</Link>
-          <Link href="/gallery">Gallery</Link>
-          <Link href="/videos">Videos</Link>
-          <Link href="/announcements">Updates</Link>
-          <Link href="/about">About</Link>
-          <Link href="/contact">Contact</Link>
+          <Link href="/shop" prefetch={false}>Shop</Link>
+          <Link href="/activities" prefetch={false}>Activities</Link>
+          <Link href="/gallery" prefetch={false}>Gallery</Link>
+          <Link href="/videos" prefetch={false}>Videos</Link>
+          <Link href="/announcements" prefetch={false}>Updates</Link>
+          <Link href="/about" prefetch={false}>About</Link>
+          <Link href="/contact" prefetch={false}>Contact</Link>
         </nav>
 
         <div className={styles.bottom}>
           <span>© {new Date().getFullYear()} EXA-ANESVAD. All rights reserved.</span>
-          <Link href="/admin" className={styles.adminLink}>Admin →</Link>
+          <Link href="/admin" className={styles.adminLink} prefetch={false}>Admin →</Link>
         </div>
       </div>
     </footer>

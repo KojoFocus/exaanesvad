@@ -51,14 +51,14 @@ export default function ImpactHome({ recentActivities, announcement }: ImpactDat
             <p className={styles.secNum}>02 — Field work</p>
             <h2 className={styles.secTitle}>Latest activities</h2>
           </div>
-          <Link href="/activities" className={styles.secLink}>All activities →</Link>
+          <Link href="/activities" className={styles.secLink} prefetch={false}>All activities →</Link>
         </div>
         {recentActivities.length === 0 ? (
           <p style={{ color: '#bbb', fontSize: '13px' }}>No activities yet.</p>
         ) : (
           <div className={styles.activityGrid}>
             {recentActivities.map((a, i) => (
-              <Link key={a.id} href={`/activities/${a.slug}`} className={styles.activityCard}>
+              <Link key={a.id} href={`/activities/${a.slug}`} className={styles.activityCard} prefetch={false}>
                 <div className={styles.actCardImg}>
                   <Image
                     src={a.featuredImage ?? fieldPhoto(i)}
@@ -91,7 +91,7 @@ export default function ImpactHome({ recentActivities, announcement }: ImpactDat
             people living with NTDs, persons with disabilities, caregivers, and vulnerable
             women in Ghana — building skills, dignity, and sustainable livelihoods.
           </p>
-          <Link href="/about" className={styles.missionCta}>Discover the programme →</Link>
+          <Link href="/about" className={styles.missionCta} prefetch={false}>Discover the programme →</Link>
         </div>
         <div className={styles.missionRight}>
           <div className={styles.missionQuote}>
