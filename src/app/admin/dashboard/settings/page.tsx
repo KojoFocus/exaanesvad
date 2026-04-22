@@ -83,7 +83,7 @@ export default async function SettingsPage() {
               name="notificationPhones" 
               className={styles.input} 
               defaultValue={notificationPhones.join(', ')} 
-              placeholder="+233540484052, +233246114671" 
+              placeholder="+233246114671"
             />
             <p className={pageStyles.helpText}>Enter phone numbers that should receive SMS notifications for new orders.</p>
           </div>

@@ -44,10 +44,11 @@ export default async function OrdersPage() {
           <thead>
             <tr>
               <th>Order</th>
-              <th>Customer</th>
               <th>Phone</th>
-              <th>Items</th>
+              <th>Items ordered</th>
+              <th>Delivery address</th>
               <th>Total</th>
+              <th>Payment</th>
               <th>Status</th>
               <th>Update</th>
               <th>Date</th>
@@ -56,18 +57,32 @@ export default async function OrdersPage() {
           </thead>
           <tbody>
             {orders.length === 0 ? (
-              <tr><td colSpan={8} className={styles.empty}>No orders yet.</td></tr>
+              <tr><td colSpan={10} className={styles.empty}>No orders yet.</td></tr>
             ) : (
               orders.map((order) => (
                 <tr key={order.id}>
                   <td className={styles.orderId}>#{order.id.slice(-6).toUpperCase()}</td>
                   <td>
-                    <div>{order.customerName}</div>
-                    <div className={styles.email}>{order.customerEmail}</div>
+                    <div className={styles.phone}>{order.customerPhone}</div>
                   </td>
-                  <td>{order.customerPhone}</td>
-                  <td>{order.items.length}</td>
-                  <td>GHS {order.totalAmount.toLocaleString()}</td>
+                  <td>
+                    <ul className={styles.itemList}>
+                      {order.items.map((item) => (
+                        <li key={item.id} className={styles.itemLine}>
+                          <span className={styles.itemName}>{item.productName}</span>
+                          <span className={styles.itemQty}>× {item.quantity}</span>
+                          <span className={styles.itemPrice}>GHS {(item.unitPrice * item.quantity).toLocaleString()}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
+                  <td className={styles.addressCell}>{order.address}</td>
+                  <td className={styles.totalCell}>GHS {order.totalAmount.toLocaleString()}</td>
+                  <td>
+                    <span className={`badge ${order.paymentStatus === 'paid' ? 'badge-success' : order.paymentStatus === 'failed' ? 'badge-danger' : 'badge-warning'}`}>
+                      {order.paymentStatus}
+                    </span>
+                  </td>
                   <td>
                     <span className={`badge ${STATUS_BADGE[order.status] ?? 'badge-neutral'}`}>
                       {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
