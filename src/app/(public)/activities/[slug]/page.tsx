@@ -7,19 +7,30 @@ import styles from './page.module.css';
 
 export const dynamic = 'force-dynamic';
 
+function renderContent(content: string): string {
+  if (/<[a-z][\s\S]*>/i.test(content)) return content;
+  return content
+    .split('\n\n')
+    .filter(p => p.trim())
+    .map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`)
+    .join('');
+}
+
 type ActivityDetailPageProps = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: ActivityDetailPageProps) {
-  const { slug } = await params;
-  const activity = await prisma.activity.findUnique({ where: { slug } });
+  const { slug: rawSlug } = await params;
+  const slug = decodeURIComponent(rawSlug);
+  const activity = await prisma.activity.findFirst({ where: { slug } });
   if (!activity) return {};
   return { title: activity.title, description: activity.summary };
 }
 
 export default async function ActivityDetailPage({ params }: ActivityDetailPageProps) {
-  const { slug } = await params;
+  const { slug: rawSlug } = await params;
+  const slug = decodeURIComponent(rawSlug);
   const [activity, related] = await Promise.all([
-    prisma.activity.findUnique({ where: { slug, published: true } }),
+    prisma.activity.findFirst({ where: { slug, published: true } }),
     prisma.activity.findMany({
       where: { published: true },
       orderBy: { activityDate: 'desc' },
@@ -79,11 +90,10 @@ export default async function ActivityDetailPage({ params }: ActivityDetailPageP
 
           {/* Full content */}
           {activity.content && (
-            <div className={styles.content}>
-              {activity.content.split('\n\n').map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
-            </div>
+            <div
+              className={styles.content}
+              dangerouslySetInnerHTML={{ __html: renderContent(activity.content) }}
+            />
           )}
 
           {/* Video embed */}

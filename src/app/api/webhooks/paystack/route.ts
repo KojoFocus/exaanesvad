@@ -107,7 +107,7 @@ export async function POST(req: NextRequest) {
         const { sendOrderNotifications } = await import('@/lib/notifications');
         await sendOrderNotifications({
           orderId:       order.id,
-          customerName:  order.customerPhone,
+          customerName:  order.customerName,
           customerPhone: order.customerPhone,
           totalAmount:   order.totalAmount,
           itemCount,

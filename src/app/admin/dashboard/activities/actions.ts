@@ -13,7 +13,7 @@ export async function createActivity(formData: FormData) {
   const activityDate  = new Date(formData.get('activityDate') as string);
   const published     = formData.get('published') === 'on';
   const featuredImage = (formData.get('featuredImage') as string) || null;
-  const slug          = slugify(title, { lower: true, strict: true });
+  const slug          = slugify(title.replace(/:/g, '-'), { lower: true, strict: true });
 
   await prisma.activity.create({
     data: { title, slug, summary, content, location, category, activityDate, published, featuredImage },
@@ -33,7 +33,7 @@ export async function updateActivity(id: string, formData: FormData) {
   const activityDate  = new Date(formData.get('activityDate') as string);
   const published     = formData.get('published') === 'on';
   const featuredImage = (formData.get('featuredImage') as string) || null;
-  const slug          = slugify(title, { lower: true, strict: true });
+  const slug          = slugify(title.replace(/:/g, '-'), { lower: true, strict: true });
 
   await prisma.activity.update({
     where: { id },

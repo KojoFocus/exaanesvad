@@ -11,8 +11,16 @@
   padding: 48px var(--px) 28px;
 }
 
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 36px;
+  gap: 48px;
+}
+
 .brand {
-  margin-bottom: 28px;
+  flex-shrink: 0;
 }
 
 .logo {
@@ -35,11 +43,34 @@
   color: rgba(255,255,255,0.3);
 }
 
+.social {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.45);
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.socialLink:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.06);
+}
+
 .links {
   display: flex;
   flex-wrap: wrap;
   gap: 6px 28px;
-  margin-bottom: 36px;
+  align-content: flex-start;
 }
 
 .links a {
@@ -73,7 +104,8 @@
   color: rgba(255,255,255,0.4);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .inner { padding: 40px var(--px-sm) 24px; }
+  .top { flex-direction: column; gap: 28px; }
   .bottom { flex-direction: column; gap: 8px; align-items: flex-start; }
 }

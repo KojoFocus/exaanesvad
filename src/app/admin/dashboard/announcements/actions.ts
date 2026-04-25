@@ -9,7 +9,7 @@ export async function createAnnouncement(formData: FormData) {
   const content   = formData.get('content') as string;
   const featured  = formData.get('featured') === 'on';
   const published = formData.get('published') === 'on';
-  const slug      = slugify(title, { lower: true, strict: true });
+  const slug      = slugify(title.replace(/:/g, '-'), { lower: true, strict: true });
   const summary   = title;
 
   await prisma.announcement.create({ data: { title, slug, summary, content, featured, published } });
@@ -23,7 +23,7 @@ export async function updateAnnouncement(id: string, formData: FormData) {
   const content   = formData.get('content') as string;
   const featured  = formData.get('featured') === 'on';
   const published = formData.get('published') === 'on';
-  const slug      = slugify(title, { lower: true, strict: true });
+  const slug      = slugify(title.replace(/:/g, '-'), { lower: true, strict: true });
   const summary   = title;
 
   await prisma.announcement.update({ where: { id }, data: { title, slug, summary, content, featured, published } });

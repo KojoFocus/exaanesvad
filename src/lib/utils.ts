@@ -34,7 +34,7 @@ export function timeAgo(date: string | Date): string {
 
 /** Create a slug from a string */
 export function toSlug(str: string): string {
-  return slugify(str, { lower: true, strict: true });
+  return slugify(str.replace(/:/g, '-'), { lower: true, strict: true });
 }
 
 /** Truncate text */

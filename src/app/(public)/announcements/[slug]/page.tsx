@@ -5,19 +5,30 @@ import styles from './page.module.css';
 
 export const dynamic = 'force-dynamic';
 
+function renderContent(content: string): string {
+  if (/<[a-z][\s\S]*>/i.test(content)) return content;
+  return content
+    .split('\n\n')
+    .filter(p => p.trim())
+    .map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`)
+    .join('');
+}
+
 type AnnouncementDetailPageProps = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: AnnouncementDetailPageProps) {
-  const { slug } = await params;
-  const item = await prisma.announcement.findUnique({ where: { slug } });
+  const { slug: rawSlug } = await params;
+  const slug = decodeURIComponent(rawSlug);
+  const item = await prisma.announcement.findFirst({ where: { slug } });
   if (!item) return {};
   return { title: item.title, description: item.summary };
 }
 
 export default async function AnnouncementDetailPage({ params }: AnnouncementDetailPageProps) {
-  const { slug } = await params;
+  const { slug: rawSlug } = await params;
+  const slug = decodeURIComponent(rawSlug);
   const [item, recent] = await Promise.all([
-    prisma.announcement.findUnique({ where: { slug, published: true } }),
+    prisma.announcement.findFirst({ where: { slug, published: true } }),
     prisma.announcement.findMany({
       where: { published: true },
       orderBy: { createdAt: 'desc' },
@@ -52,11 +63,10 @@ export default async function AnnouncementDetailPage({ params }: AnnouncementDet
 
           <div className={styles.rule} />
 
-          <div className={styles.content}>
-            {item.content.split('\n\n').map((para, i) => (
-              <p key={i}>{para}</p>
-            ))}
-          </div>
+          <div
+            className={styles.content}
+            dangerouslySetInnerHTML={{ __html: renderContent(item.content) }}
+          />
         </article>
 
         {/* Sidebar */}
